@@ -1,450 +1,434 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-high": "#ddeaf2",
+              "surface-container": "#e3f0f8",
+              "error": "#ba1a1a",
+              "outline": "#737780",
+              "tertiary-fixed": "#ffdbca",
+              "on-secondary-container": "#4e6874",
+              "secondary": "#48626e",
+              "on-tertiary-fixed": "#341100",
+              "on-secondary": "#ffffff",
+              "secondary-fixed-dim": "#afcbd8",
+              "surface-dim": "#cfdce4",
+              "on-error": "#ffffff",
+              "on-background": "#111d23",
+              "secondary-container": "#cbe7f5",
+              "on-tertiary-fixed-variant": "#723610",
+              "tertiary": "#381300",
+              "on-error-container": "#93000a",
+              "surface-container-highest": "#d7e4ec",
+              "on-tertiary": "#ffffff",
+              "error-container": "#ffdad6",
+              "on-primary-container": "#6b9edf",
+              "inverse-surface": "#263238",
+              "surface-container-lowest": "#ffffff",
+              "surface-tint": "#27609d",
+              "on-secondary-fixed-variant": "#304a55",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#e6f3fb",
+              "on-primary-fixed-variant": "#004882",
+              "surface": "#f4faff",
+              "tertiary-container": "#592300",
+              "surface-variant": "#d7e4ec",
+              "outline-variant": "#c3c6d1",
+              "primary-container": "#003461",
+              "surface-container-low": "#e9f6fd",
+              "tertiary-fixed-dim": "#ffb690",
+              "primary-fixed": "#d3e4ff",
+              "surface-bright": "#f4faff",
+              "on-primary-fixed": "#001c38",
+              "inverse-primary": "#a3c9ff",
+              "secondary-fixed": "#cbe7f5",
+              "primary": "#001f3d",
+              "on-secondary-fixed": "#021f29",
+              "primary-fixed-dim": "#a3c9ff",
+              "on-tertiary-container": "#d8885c",
+              "on-surface-variant": "#43474f",
+              "on-surface": "#111d23",
+              "background": "#f4faff"
+            },
+            fontFamily: {
+              "headline": ["Inter"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .sidebar-active {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;html class="light" lang="en"&gt;&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="utf-8"/&gt;</p>
-<p class="p1">&lt;meta content="width=device-width, initial-scale=1.0" name="viewport"/&gt;</p>
-<p class="p1">&lt;script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
-<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
-<p class="p1">&lt;script id="tailwind-config"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tailwind.config = {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>darkMode: "class",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>theme: {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>extend: {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>colors: {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-high": "#ddeaf2",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container": "#e3f0f8",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"error": "#ba1a1a",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"outline": "#737780",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-fixed": "#ffdbca",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-container": "#4e6874",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"secondary": "#48626e",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-fixed": "#341100",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"secondary-fixed-dim": "#afcbd8",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-dim": "#cfdce4",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-error": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-background": "#111d23",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"secondary-container": "#cbe7f5",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-fixed-variant": "#723610",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"tertiary": "#381300",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-error-container": "#93000a",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-highest": "#d7e4ec",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"error-container": "#ffdad6",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-container": "#6b9edf",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"inverse-surface": "#263238",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-lowest": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-tint": "#27609d",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-fixed-variant": "#304a55",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-primary": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"inverse-on-surface": "#e6f3fb",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-fixed-variant": "#004882",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface": "#f4faff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-container": "#592300",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-variant": "#d7e4ec",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"outline-variant": "#c3c6d1",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"primary-container": "#003461",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-low": "#e9f6fd",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-fixed-dim": "#ffb690",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"primary-fixed": "#d3e4ff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-bright": "#f4faff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-fixed": "#001c38",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"inverse-primary": "#a3c9ff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"secondary-fixed": "#cbe7f5",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"primary": "#001f3d",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-fixed": "#021f29",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"primary-fixed-dim": "#a3c9ff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-container": "#d8885c",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-surface-variant": "#43474f",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-surface": "#111d23",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"background": "#f4faff"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>fontFamily: {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"headline": ["Inter"],</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"body": ["Inter"],</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"label": ["Inter"]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},</p>
-<p class="p1"><span class="Apple-converted-space">          </span>},</p>
-<p class="p1"><span class="Apple-converted-space">        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: 'Inter', sans-serif; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.material-symbols-outlined {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>vertical-align: middle;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.sidebar-active {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-variation-settings: 'FILL' 1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-surface text-on-surface flex overflow-hidden h-screen"&gt;</p>
-<p class="p1">&lt;!-- Predicted Component: SideNavBar --&gt;</p>
-<p class="p1">&lt;aside class="fixed left-0 top-0 h-full w-72 bg-[#001f3d]/90 dark:bg-slate-950/90 backdrop-blur-xl flex flex-col border-r border-blue-900/10 shadow-2xl shadow-blue-900/20 z-50"&gt;</p>
-<p class="p1">&lt;div class="p-6"&gt;</p>
-<p class="p1">&lt;div class="flex items-center space-x-3 mb-8"&gt;</p>
-<p class="p1">&lt;div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;"&gt;directions_boat&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div&gt;</p>
-<p class="p1">&lt;h2 class="text-white font-bold text-sm tracking-tight leading-none uppercase"&gt;KPS8 OSMAN BEY&lt;/h2&gt;</p>
-<p class="p1">&lt;p class="text-blue-100/60 text-[10px] font-bold uppercase tracking-widest mt-1"&gt;Operational&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;nav class="space-y-1"&gt;</p>
-<p class="p1">&lt;!-- Dashboard (Active State Mapping) --&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#001f3d] to-[#003461] text-white border-r-4 border-blue-400 translate-x-1 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;"&gt;dashboard&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Dashboard&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;!-- Items from JSON --&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;settings_input_component&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Spark Plug&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;settings_input_composite&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;PCC (Non Return Valve)&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;straighten&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Valve Measurement&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;air&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Starting Air Compressors&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;compress&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Denox Compressors&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;mode_fan&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Control Air Compressors&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;water_drop&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;FWG&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;ev_station&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Pumps&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;oil_barrel&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Lube Oil System&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;/nav&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="mt-auto p-6 space-y-4"&gt;</p>
-<p class="p1">&lt;button class="w-full py-3 bg-blue-500 hover:bg-blue-400 text-[#001f3d] font-bold text-[10px] uppercase tracking-widest rounded transition-colors flex items-center justify-center gap-2"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-sm"&gt;add&lt;/span&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                </span>Add Maintenance Log</p>
-<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
-<p class="p1">&lt;div class="flex flex-col gap-2 pt-4 border-t border-blue-900/20"&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/50 hover:text-white transition-colors" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[18px]"&gt;monitor_heart&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest"&gt;System Health&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/50 hover:text-white transition-colors" href="#"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[18px]"&gt;help&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest"&gt;Support&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/aside&gt;</p>
-<p class="p1">&lt;!-- Content Shell --&gt;</p>
-<p class="p1">&lt;main class="flex-1 ml-72 flex flex-col h-full overflow-hidden"&gt;</p>
-<p class="p1">&lt;!-- Predicted Component: TopNavBar --&gt;</p>
-<p class="p1">&lt;header class="bg-[#f4faff] flex justify-between items-center w-full px-8 py-3 h-16 border-b-0 sticky top-0 z-40"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-8"&gt;</p>
-<p class="p1">&lt;h1 class="text-xl font-black text-[#001f3d] tracking-tighter uppercase"&gt;KPS8 OSMAN BEY | PMS&lt;/h1&gt;</p>
-<p class="p1">&lt;nav class="hidden md:flex items-center gap-6"&gt;</p>
-<p class="p1">&lt;a class="text-[#001f3d] font-bold border-b-2 border-[#001f3d] pb-1 text-sm Inter tracking-tight" href="#"&gt;Fleet Dashboard&lt;/a&gt;</p>
-<p class="p1">&lt;a class="text-slate-500 hover:bg-[#e3f0f8] transition-colors px-2 py-1 rounded text-sm Inter tracking-tight" href="#"&gt;Vessel Status&lt;/a&gt;</p>
-<p class="p1">&lt;a class="text-slate-500 hover:bg-[#e3f0f8] transition-colors px-2 py-1 rounded text-sm Inter tracking-tight" href="#"&gt;Crew Info&lt;/a&gt;</p>
-<p class="p1">&lt;/nav&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-4"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-1"&gt;</p>
-<p class="p1">&lt;button class="p-2 text-slate-500 hover:bg-[#e3f0f8] rounded-full transition-colors"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined"&gt;notifications&lt;/span&gt;</p>
-<p class="p1">&lt;/button&gt;</p>
-<p class="p1">&lt;button class="p-2 text-slate-500 hover:bg-[#e3f0f8] rounded-full transition-colors"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined"&gt;settings&lt;/span&gt;</p>
-<p class="p1">&lt;/button&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-8 w-[1px] bg-outline-variant/30 mx-2"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;button class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-on-primary-fixed-variant hover:bg-[#e3f0f8] transition-colors"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>Export Log</p>
-<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
-<p class="p1">&lt;div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center"&gt;</p>
-<p class="p1">&lt;img alt="Chief Engineer" class="w-8 h-8 rounded-full object-cover" data-alt="Close-up portrait of an experienced marine engineer in a white naval uniform with a serious and authoritative expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYnt7f4nYP0Aq6N0YkLLJnzRN2Ppub9kEEq2Ht53lvJjQhzn3_aGss49ODsD50gNn1mJ7BBnjuX1nPN-Wy8haj8zSewa0C_cxKvewbBuqUsjnnp_M1GqpomZQwtOoZnlifrt5guwz3rWjKJt-92Sz0VNDMJms-QYNcwIB9Wh72DLrU_yPt7PC7i36DwGHpVDlKcnuNoBFUnTsfOS-Gw0L6k-HSbP7bOEk532vLCwUIfLgdlpArlqHIHezRDvn5y9y4G2mXoD6h2zU"/&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/header&gt;</p>
-<p class="p1">&lt;!-- Main Dashboard Content --&gt;</p>
-<p class="p1">&lt;div class="flex-1 overflow-y-auto p-8 space-y-8"&gt;</p>
-<p class="p1">&lt;!-- Bento Grid - Key Telemetry --&gt;</p>
-<p class="p1">&lt;section class="grid grid-cols-1 md:grid-cols-3 gap-6"&gt;</p>
-<p class="p1">&lt;!-- Fleet Hours --&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-surface-container-high"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-outline"&gt;Total Operating Time&lt;/span&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-primary/40"&gt;timer&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;h3 class="text-4xl font-extrabold text-primary tracking-tight"&gt;1,324,580&lt;/h3&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-primary-container uppercase mt-1"&gt;Fleet Hours Accumulated&lt;/p&gt;</p>
-<p class="p1">&lt;div class="mt-6 w-full bg-surface-container h-1 rounded-full overflow-hidden"&gt;</p>
-<p class="p1">&lt;div class="bg-primary h-full w-3/4"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- Overdue Tasks --&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-error/20"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-error"&gt;Critical Alerts&lt;/span&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-error"&gt;warning&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;h3 class="text-4xl font-extrabold text-error tracking-tight"&gt;24&lt;/h3&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-error uppercase mt-1"&gt;Overdue Tasks Detected&lt;/p&gt;</p>
-<p class="p1">&lt;div class="mt-6 flex items-center gap-2"&gt;</p>
-<p class="p1">&lt;span class="px-2 py-0.5 bg-error text-white text-[10px] font-bold rounded-full"&gt;HIGH PRIORITY&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] text-outline font-medium"&gt;Requires immediate action&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- Upcoming Checks --&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-surface-container-high"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-outline"&gt;Planned Schedule&lt;/span&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-surface-tint"&gt;event_upcoming&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;h3 class="text-4xl font-extrabold text-primary tracking-tight"&gt;42&lt;/h3&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-primary-container uppercase mt-1"&gt;Upcoming Checks (72h)&lt;/p&gt;</p>
-<p class="p1">&lt;div class="mt-6 flex gap-1"&gt;</p>
-<p class="p1">&lt;div class="h-1 flex-1 bg-surface-tint rounded-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-1 flex-1 bg-surface-tint rounded-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-1 flex-1 bg-surface-container rounded-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-1 flex-1 bg-surface-container rounded-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p1">&lt;!-- Main Data Table Section --&gt;</p>
-<p class="p1">&lt;section class="bg-surface-container-low rounded-xl overflow-hidden"&gt;</p>
-<p class="p1">&lt;div class="p-6 flex justify-between items-center border-b border-outline-variant/10"&gt;</p>
-<p class="p1">&lt;div&gt;</p>
-<p class="p1">&lt;h2 class="text-lg font-bold text-primary"&gt;Active Maintenance Backlog&lt;/h2&gt;</p>
-<p class="p1">&lt;p class="text-xs text-secondary font-medium mt-1"&gt;Showing all pending items for Engine Room Section A-4&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex gap-2"&gt;</p>
-<p class="p1">&lt;button class="px-3 py-1.5 bg-surface-container-lowest text-[10px] font-bold uppercase tracking-widest text-primary border border-outline-variant/30 rounded flex items-center gap-2"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-sm"&gt;filter_list&lt;/span&gt; Filter</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
-<p class="p1">&lt;button class="px-3 py-1.5 bg-primary text-white text-[10px] font-bold uppercase tracking-widest rounded flex items-center gap-2 shadow-lg shadow-primary/20"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-sm"&gt;download&lt;/span&gt; Report</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="overflow-x-auto"&gt;</p>
-<p class="p1">&lt;table class="w-full text-left border-collapse"&gt;</p>
-<p class="p1">&lt;thead class="bg-surface-container text-primary"&gt;</p>
-<p class="p1">&lt;tr&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Component ID&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Description&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Last Check&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Next Due&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Status&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Action&lt;/th&gt;</p>
-<p class="p1">&lt;/tr&gt;</p>
-<p class="p1">&lt;/thead&gt;</p>
-<p class="p1">&lt;tbody class="divide-y divide-outline-variant/5"&gt;</p>
-<p class="p1">&lt;tr class="bg-surface-container-lowest hover:bg-surface-container transition-colors"&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-primary font-mono tracking-tight"&gt;ENG-P-402&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;div class="flex flex-col"&gt;</p>
-<p class="p1">&lt;span class="text-sm font-bold text-primary"&gt;Main Fuel Injection Pump&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] text-outline uppercase font-medium"&gt;Lubrication &amp;amp; Seal Check&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs text-secondary font-medium"&gt;2023-10-12&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-error"&gt;2023-11-20&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="px-3 py-1 bg-error text-white text-[10px] font-bold rounded-full uppercase"&gt;Overdue&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;button class="text-primary-container hover:text-primary transition-colors"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined"&gt;open_in_new&lt;/span&gt;</p>
-<p class="p1">&lt;/button&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;/tr&gt;</p>
-<p class="p1">&lt;tr class="bg-surface hover:bg-surface-container transition-colors"&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-primary font-mono tracking-tight"&gt;CMP-A-012&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;div class="flex flex-col"&gt;</p>
-<p class="p1">&lt;span class="text-sm font-bold text-primary"&gt;Air Compressor Unit 2&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] text-outline uppercase font-medium"&gt;Filter Replacement&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs text-secondary font-medium"&gt;2023-11-05&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-primary"&gt;2023-12-15&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="px-3 py-1 bg-[#F1C40F] text-black text-[10px] font-bold rounded-full uppercase"&gt;Upcoming&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;button class="text-primary-container hover:text-primary transition-colors"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined"&gt;open_in_new&lt;/span&gt;</p>
-<p class="p1">&lt;/button&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;/tr&gt;</p>
-<p class="p1">&lt;tr class="bg-surface-container-lowest hover:bg-surface-container transition-colors"&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-primary font-mono tracking-tight"&gt;VAL-X-99&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;div class="flex flex-col"&gt;</p>
-<p class="p1">&lt;span class="text-sm font-bold text-primary"&gt;Cylinder Head Valve&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] text-outline uppercase font-medium"&gt;Tappet Clearance Measurement&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs text-secondary font-medium"&gt;2023-11-18&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-primary"&gt;2024-02-20&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;span class="px-3 py-1 bg-[#27AE60] text-white text-[10px] font-bold rounded-full uppercase"&gt;Healthy&lt;/span&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
-<p class="p1">&lt;button class="text-primary-container hover:text-primary transition-colors"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined"&gt;open_in_new&lt;/span&gt;</p>
-<p class="p1">&lt;/button&gt;</p>
-<p class="p1">&lt;/td&gt;</p>
-<p class="p1">&lt;/tr&gt;</p>
-<p class="p1">&lt;/tbody&gt;</p>
-<p class="p1">&lt;/table&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p1">&lt;!-- Bottom Layout: Visual Telemetry and Logs --&gt;</p>
-<p class="p1">&lt;section class="grid grid-cols-1 lg:grid-cols-2 gap-8"&gt;</p>
-<p class="p1">&lt;!-- Karmole Gas Specifications --&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-center mb-6"&gt;</p>
-<p class="p1">&lt;h3 class="text-sm font-black text-primary uppercase tracking-tight"&gt;Karmole Gas Specifications&lt;/h3&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
-<p class="p1">&lt;span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"&gt;&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[9px] font-bold text-secondary uppercase"&gt;Nominal Supply&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-primary text-lg"&gt;compress&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Supply Pressure&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;</p>
-<p class="p1">&lt;span class="text-2xl font-black text-primary"&gt;6.8&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-secondary"&gt;bar&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-primary text-lg"&gt;thermostat&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Temperature&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;</p>
-<p class="p1">&lt;span class="text-2xl font-black text-primary"&gt;42.5&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-secondary"&gt;°C&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-primary text-lg"&gt;local_fire_department&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Calorific Value&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;</p>
-<p class="p1">&lt;span class="text-2xl font-black text-primary"&gt;34.2&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-secondary"&gt;MJ/m³&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-primary text-lg"&gt;gas_meter&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Methane Number&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;</p>
-<p class="p1">&lt;span class="text-2xl font-black text-primary"&gt;82&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-secondary"&gt;MN&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="mt-4 pt-4 border-t border-outline-variant/10 flex justify-between items-center"&gt;</p>
-<p class="p1">&lt;p class="text-[10px] text-outline font-medium"&gt;Last automated analysis: 14 mins ago&lt;/p&gt;</p>
-<p class="p1">&lt;button class="text-[10px] font-bold text-primary-container uppercase tracking-widest hover:underline"&gt;Full Analytics&lt;/button&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- Recent Activity Feed --&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-center mb-6"&gt;</p>
-<p class="p1">&lt;h3 class="text-sm font-black text-primary uppercase tracking-tight"&gt;Recent Deck Logs&lt;/h3&gt;</p>
-<p class="p1">&lt;a class="text-[10px] font-bold uppercase tracking-widest text-primary-container underline underline-offset-4" href="#"&gt;View All&lt;/a&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="space-y-4"&gt;</p>
-<p class="p1">&lt;div class="flex gap-4 items-start"&gt;</p>
-<p class="p1">&lt;div class="w-2 h-2 mt-1.5 rounded-full bg-primary flex-shrink-0"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-primary leading-tight"&gt;Valve Clearance Adjusted - Cylinder 4&lt;/p&gt;</p>
-<p class="p1">&lt;p class="text-[10px] text-outline mt-0.5 font-medium"&gt;Recorded by 2nd Engineer • 2 hours ago&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex gap-4 items-start"&gt;</p>
-<p class="p1">&lt;div class="w-2 h-2 mt-1.5 rounded-full bg-error flex-shrink-0"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-primary leading-tight"&gt;High Temp Alarm - FWG Heat Exchanger&lt;/p&gt;</p>
-<p class="p1">&lt;p class="text-[10px] text-outline mt-0.5 font-medium"&gt;Automated System Log • 4 hours ago&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex gap-4 items-start"&gt;</p>
-<p class="p1">&lt;div class="w-2 h-2 mt-1.5 rounded-full bg-surface-tint flex-shrink-0"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-primary leading-tight"&gt;Quarterly Inspection Started&lt;/p&gt;</p>
-<p class="p1">&lt;p class="text-[10px] text-outline mt-0.5 font-medium"&gt;Chief Engineer Auth • 1 day ago&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/main&gt;</p>
-<p class="p1">&lt;/body&gt;&lt;/html&gt;</p>
-</body>
-</html>
+<body class="bg-surface text-on-surface flex overflow-hidden h-screen">
+<!-- Predicted Component: SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-72 bg-[#001f3d]/90 dark:bg-slate-950/90 backdrop-blur-xl flex flex-col border-r border-blue-900/10 shadow-2xl shadow-blue-900/20 z-50">
+<div class="p-6">
+<div class="flex items-center space-x-3 mb-8">
+<div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">directions_boat</span>
+</div>
+<div>
+<h2 class="text-white font-bold text-sm tracking-tight leading-none uppercase">KPS8 OSMAN BEY</h2>
+<p class="text-blue-100/60 text-[10px] font-bold uppercase tracking-widest mt-1">Operational</p>
+</div>
+</div>
+<nav class="space-y-1">
+<!-- Dashboard (Active State Mapping) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#001f3d] to-[#003461] text-white border-r-4 border-blue-400 translate-x-1 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-xs font-bold uppercase tracking-widest">Dashboard</span>
+</a>
+<!-- Items from JSON -->
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings_input_component</span>
+<span class="text-xs font-bold uppercase tracking-widest">Spark Plug</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">settings_input_composite</span>
+<span class="text-xs font-bold uppercase tracking-widest">PCC (Non Return Valve)</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">straighten</span>
+<span class="text-xs font-bold uppercase tracking-widest">Valve Measurement</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">air</span>
+<span class="text-xs font-bold uppercase tracking-widest">Starting Air Compressors</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">compress</span>
+<span class="text-xs font-bold uppercase tracking-widest">Denox Compressors</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">mode_fan</span>
+<span class="text-xs font-bold uppercase tracking-widest">Control Air Compressors</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">water_drop</span>
+<span class="text-xs font-bold uppercase tracking-widest">FWG</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">ev_station</span>
+<span class="text-xs font-bold uppercase tracking-widest">Pumps</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px]">oil_barrel</span>
+<span class="text-xs font-bold uppercase tracking-widest">Lube Oil System</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto p-6 space-y-4">
+<button class="w-full py-3 bg-blue-500 hover:bg-blue-400 text-[#001f3d] font-bold text-[10px] uppercase tracking-widest rounded transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">add</span>
+                Add Maintenance Log
+            </button>
+<div class="flex flex-col gap-2 pt-4 border-t border-blue-900/20">
+<a class="flex items-center gap-3 text-blue-100/50 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">monitor_heart</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">System Health</span>
+</a>
+<a class="flex items-center gap-3 text-blue-100/50 hover:text-white transition-colors" href="#">
+<span class="material-symbols-outlined text-[18px]">help</span>
+<span class="text-[10px] font-bold uppercase tracking-widest">Support</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Content Shell -->
+<main class="flex-1 ml-72 flex flex-col h-full overflow-hidden">
+<!-- Predicted Component: TopNavBar -->
+<header class="bg-[#f4faff] flex justify-between items-center w-full px-8 py-3 h-16 border-b-0 sticky top-0 z-40">
+<div class="flex items-center gap-8">
+<h1 class="text-xl font-black text-[#001f3d] tracking-tighter uppercase">KPS8 OSMAN BEY | PMS</h1>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-[#001f3d] font-bold border-b-2 border-[#001f3d] pb-1 text-sm Inter tracking-tight" href="#">Fleet Dashboard</a>
+<a class="text-slate-500 hover:bg-[#e3f0f8] transition-colors px-2 py-1 rounded text-sm Inter tracking-tight" href="#">Vessel Status</a>
+<a class="text-slate-500 hover:bg-[#e3f0f8] transition-colors px-2 py-1 rounded text-sm Inter tracking-tight" href="#">Crew Info</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1">
+<button class="p-2 text-slate-500 hover:bg-[#e3f0f8] rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-[#e3f0f8] rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-2"></div>
+<button class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-on-primary-fixed-variant hover:bg-[#e3f0f8] transition-colors">
+                    Export Log
+                </button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center">
+<img alt="Chief Engineer" class="w-8 h-8 rounded-full object-cover" data-alt="Close-up portrait of an experienced marine engineer in a white naval uniform with a serious and authoritative expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYnt7f4nYP0Aq6N0YkLLJnzRN2Ppub9kEEq2Ht53lvJjQhzn3_aGss49ODsD50gNn1mJ7BBnjuX1nPN-Wy8haj8zSewa0C_cxKvewbBuqUsjnnp_M1GqpomZQwtOoZnlifrt5guwz3rWjKJt-92Sz0VNDMJms-QYNcwIB9Wh72DLrU_yPt7PC7i36DwGHpVDlKcnuNoBFUnTsfOS-Gw0L6k-HSbP7bOEk532vLCwUIfLgdlpArlqHIHezRDvn5y9y4G2mXoD6h2zU"/>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<!-- Bento Grid - Key Telemetry -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Fleet Hours -->
+<div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-surface-container-high">
+<div class="flex justify-between items-start mb-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-outline">Total Operating Time</span>
+<span class="material-symbols-outlined text-primary/40">timer</span>
+</div>
+<h3 class="text-4xl font-extrabold text-primary tracking-tight">1,324,580</h3>
+<p class="text-xs font-bold text-primary-container uppercase mt-1">Fleet Hours Accumulated</p>
+<div class="mt-6 w-full bg-surface-container h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+</div>
+<!-- Overdue Tasks -->
+<div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-error/20">
+<div class="flex justify-between items-start mb-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-error">Critical Alerts</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<h3 class="text-4xl font-extrabold text-error tracking-tight">24</h3>
+<p class="text-xs font-bold text-error uppercase mt-1">Overdue Tasks Detected</p>
+<div class="mt-6 flex items-center gap-2">
+<span class="px-2 py-0.5 bg-error text-white text-[10px] font-bold rounded-full">HIGH PRIORITY</span>
+<span class="text-[10px] text-outline font-medium">Requires immediate action</span>
+</div>
+</div>
+<!-- Upcoming Checks -->
+<div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-surface-container-high">
+<div class="flex justify-between items-start mb-4">
+<span class="text-[10px] font-bold uppercase tracking-widest text-outline">Planned Schedule</span>
+<span class="material-symbols-outlined text-surface-tint">event_upcoming</span>
+</div>
+<h3 class="text-4xl font-extrabold text-primary tracking-tight">42</h3>
+<p class="text-xs font-bold text-primary-container uppercase mt-1">Upcoming Checks (72h)</p>
+<div class="mt-6 flex gap-1">
+<div class="h-1 flex-1 bg-surface-tint rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-tint rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-container rounded-full"></div>
+<div class="h-1 flex-1 bg-surface-container rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- Main Data Table Section -->
+<section class="bg-surface-container-low rounded-xl overflow-hidden">
+<div class="p-6 flex justify-between items-center border-b border-outline-variant/10">
+<div>
+<h2 class="text-lg font-bold text-primary">Active Maintenance Backlog</h2>
+<p class="text-xs text-secondary font-medium mt-1">Showing all pending items for Engine Room Section A-4</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 bg-surface-container-lowest text-[10px] font-bold uppercase tracking-widest text-primary border border-outline-variant/30 rounded flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter
+                        </button>
+<button class="px-3 py-1.5 bg-primary text-white text-[10px] font-bold uppercase tracking-widest rounded flex items-center gap-2 shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-sm">download</span> Report
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container text-primary">
+<tr>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Component ID</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Description</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Last Check</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Next Due</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Status</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5">
+<tr class="bg-surface-container-lowest hover:bg-surface-container transition-colors">
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-primary font-mono tracking-tight">ENG-P-402</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Main Fuel Injection Pump</span>
+<span class="text-[10px] text-outline uppercase font-medium">Lubrication &amp; Seal Check</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-secondary font-medium">2023-10-12</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-error">2023-11-20</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-error text-white text-[10px] font-bold rounded-full uppercase">Overdue</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined">open_in_new</span>
+</button>
+</td>
+</tr>
+<tr class="bg-surface hover:bg-surface-container transition-colors">
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-primary font-mono tracking-tight">CMP-A-012</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Air Compressor Unit 2</span>
+<span class="text-[10px] text-outline uppercase font-medium">Filter Replacement</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-secondary font-medium">2023-11-05</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-primary">2023-12-15</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-[#F1C40F] text-black text-[10px] font-bold rounded-full uppercase">Upcoming</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined">open_in_new</span>
+</button>
+</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container transition-colors">
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-primary font-mono tracking-tight">VAL-X-99</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex flex-col">
+<span class="text-sm font-bold text-primary">Cylinder Head Valve</span>
+<span class="text-[10px] text-outline uppercase font-medium">Tappet Clearance Measurement</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs text-secondary font-medium">2023-11-18</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs font-bold text-primary">2024-02-20</span>
+</td>
+<td class="px-6 py-4">
+<span class="px-3 py-1 bg-[#27AE60] text-white text-[10px] font-bold rounded-full uppercase">Healthy</span>
+</td>
+<td class="px-6 py-4">
+<button class="text-primary-container hover:text-primary transition-colors">
+<span class="material-symbols-outlined">open_in_new</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Bottom Layout: Visual Telemetry and Logs -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+<!-- Karmole Gas Specifications -->
+<div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-sm font-black text-primary uppercase tracking-tight">Karmole Gas Specifications</h3>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+<span class="text-[9px] font-bold text-secondary uppercase">Nominal Supply</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-lg">compress</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Supply Pressure</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-black text-primary">6.8</span>
+<span class="text-xs font-bold text-secondary">bar</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-lg">thermostat</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Temperature</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-black text-primary">42.5</span>
+<span class="text-xs font-bold text-secondary">°C</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-lg">local_fire_department</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Calorific Value</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-black text-primary">34.2</span>
+<span class="text-xs font-bold text-secondary">MJ/m³</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary text-lg">gas_meter</span>
+<span class="text-[10px] font-bold text-outline uppercase tracking-wider">Methane Number</span>
+</div>
+<div class="flex items-baseline gap-1">
+<span class="text-2xl font-black text-primary">82</span>
+<span class="text-xs font-bold text-secondary">MN</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-outline-variant/10 flex justify-between items-center">
+<p class="text-[10px] text-outline font-medium">Last automated analysis: 14 mins ago</p>
+<button class="text-[10px] font-bold text-primary-container uppercase tracking-widest hover:underline">Full Analytics</button>
+</div>
+</div>
+<!-- Recent Activity Feed -->
+<div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-sm font-black text-primary uppercase tracking-tight">Recent Deck Logs</h3>
+<a class="text-[10px] font-bold uppercase tracking-widest text-primary-container underline underline-offset-4" href="#">View All</a>
+</div>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 mt-1.5 rounded-full bg-primary flex-shrink-0"></div>
+<div>
+<p class="text-xs font-bold text-primary leading-tight">Valve Clearance Adjusted - Cylinder 4</p>
+<p class="text-[10px] text-outline mt-0.5 font-medium">Recorded by 2nd Engineer • 2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 mt-1.5 rounded-full bg-error flex-shrink-0"></div>
+<div>
+<p class="text-xs font-bold text-primary leading-tight">High Temp Alarm - FWG Heat Exchanger</p>
+<p class="text-[10px] text-outline mt-0.5 font-medium">Automated System Log • 4 hours ago</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="w-2 h-2 mt-1.5 rounded-full bg-surface-tint flex-shrink-0"></div>
+<div>
+<p class="text-xs font-bold text-primary leading-tight">Quarterly Inspection Started</p>
+<p class="text-[10px] text-outline mt-0.5 font-medium">Chief Engineer Auth • 1 day ago</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+</body></html>
