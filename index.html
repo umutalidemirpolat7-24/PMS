@@ -1,0 +1,450 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.5">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;html class="light" lang="en"&gt;&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="utf-8"/&gt;</p>
+<p class="p1">&lt;meta content="width=device-width, initial-scale=1.0" name="viewport"/&gt;</p>
+<p class="p1">&lt;script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1">&lt;script id="tailwind-config"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tailwind.config = {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>darkMode: "class",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>theme: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>extend: {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>colors: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-high": "#ddeaf2",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-container": "#e3f0f8",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"error": "#ba1a1a",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"outline": "#737780",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-fixed": "#ffdbca",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-container": "#4e6874",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"secondary": "#48626e",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-fixed": "#341100",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary": "#ffffff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"secondary-fixed-dim": "#afcbd8",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-dim": "#cfdce4",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-error": "#ffffff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-background": "#111d23",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"secondary-container": "#cbe7f5",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-fixed-variant": "#723610",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"tertiary": "#381300",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-error-container": "#93000a",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-highest": "#d7e4ec",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary": "#ffffff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"error-container": "#ffdad6",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-container": "#6b9edf",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"inverse-surface": "#263238",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-lowest": "#ffffff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-tint": "#27609d",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-fixed-variant": "#304a55",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-primary": "#ffffff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"inverse-on-surface": "#e6f3fb",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-fixed-variant": "#004882",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface": "#f4faff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-container": "#592300",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-variant": "#d7e4ec",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"outline-variant": "#c3c6d1",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"primary-container": "#003461",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-low": "#e9f6fd",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-fixed-dim": "#ffb690",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"primary-fixed": "#d3e4ff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"surface-bright": "#f4faff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-fixed": "#001c38",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"inverse-primary": "#a3c9ff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"secondary-fixed": "#cbe7f5",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"primary": "#001f3d",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-fixed": "#021f29",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"primary-fixed-dim": "#a3c9ff",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-container": "#d8885c",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-surface-variant": "#43474f",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"on-surface": "#111d23",</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"background": "#f4faff"</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>fontFamily: {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"headline": ["Inter"],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"body": ["Inter"],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>"label": ["Inter"]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},</p>
+<p class="p1"><span class="Apple-converted-space">          </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: 'Inter', sans-serif; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.material-symbols-outlined {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>vertical-align: middle;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.sidebar-active {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-variation-settings: 'FILL' 1;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-surface text-on-surface flex overflow-hidden h-screen"&gt;</p>
+<p class="p1">&lt;!-- Predicted Component: SideNavBar --&gt;</p>
+<p class="p1">&lt;aside class="fixed left-0 top-0 h-full w-72 bg-[#001f3d]/90 dark:bg-slate-950/90 backdrop-blur-xl flex flex-col border-r border-blue-900/10 shadow-2xl shadow-blue-900/20 z-50"&gt;</p>
+<p class="p1">&lt;div class="p-6"&gt;</p>
+<p class="p1">&lt;div class="flex items-center space-x-3 mb-8"&gt;</p>
+<p class="p1">&lt;div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;"&gt;directions_boat&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;h2 class="text-white font-bold text-sm tracking-tight leading-none uppercase"&gt;KPS8 OSMAN BEY&lt;/h2&gt;</p>
+<p class="p1">&lt;p class="text-blue-100/60 text-[10px] font-bold uppercase tracking-widest mt-1"&gt;Operational&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;nav class="space-y-1"&gt;</p>
+<p class="p1">&lt;!-- Dashboard (Active State Mapping) --&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 px-4 py-3 rounded-md bg-gradient-to-r from-[#001f3d] to-[#003461] text-white border-r-4 border-blue-400 translate-x-1 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;"&gt;dashboard&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Dashboard&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;!-- Items from JSON --&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;settings_input_component&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Spark Plug&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;settings_input_composite&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;PCC (Non Return Valve)&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;straighten&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Valve Measurement&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;air&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Starting Air Compressors&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;compress&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Denox Compressors&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;mode_fan&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Control Air Compressors&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;water_drop&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;FWG&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;ev_station&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Pumps&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;oil_barrel&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Lube Oil System&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="mt-auto p-6 space-y-4"&gt;</p>
+<p class="p1">&lt;button class="w-full py-3 bg-blue-500 hover:bg-blue-400 text-[#001f3d] font-bold text-[10px] uppercase tracking-widest rounded transition-colors flex items-center justify-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-sm"&gt;add&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Add Maintenance Log</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1">&lt;div class="flex flex-col gap-2 pt-4 border-t border-blue-900/20"&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/50 hover:text-white transition-colors" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[18px]"&gt;monitor_heart&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest"&gt;System Health&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/50 hover:text-white transition-colors" href="#"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-[18px]"&gt;help&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest"&gt;Support&lt;/span&gt;</p>
+<p class="p1">&lt;/a&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/aside&gt;</p>
+<p class="p1">&lt;!-- Content Shell --&gt;</p>
+<p class="p1">&lt;main class="flex-1 ml-72 flex flex-col h-full overflow-hidden"&gt;</p>
+<p class="p1">&lt;!-- Predicted Component: TopNavBar --&gt;</p>
+<p class="p1">&lt;header class="bg-[#f4faff] flex justify-between items-center w-full px-8 py-3 h-16 border-b-0 sticky top-0 z-40"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-8"&gt;</p>
+<p class="p1">&lt;h1 class="text-xl font-black text-[#001f3d] tracking-tighter uppercase"&gt;KPS8 OSMAN BEY | PMS&lt;/h1&gt;</p>
+<p class="p1">&lt;nav class="hidden md:flex items-center gap-6"&gt;</p>
+<p class="p1">&lt;a class="text-[#001f3d] font-bold border-b-2 border-[#001f3d] pb-1 text-sm Inter tracking-tight" href="#"&gt;Fleet Dashboard&lt;/a&gt;</p>
+<p class="p1">&lt;a class="text-slate-500 hover:bg-[#e3f0f8] transition-colors px-2 py-1 rounded text-sm Inter tracking-tight" href="#"&gt;Vessel Status&lt;/a&gt;</p>
+<p class="p1">&lt;a class="text-slate-500 hover:bg-[#e3f0f8] transition-colors px-2 py-1 rounded text-sm Inter tracking-tight" href="#"&gt;Crew Info&lt;/a&gt;</p>
+<p class="p1">&lt;/nav&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-4"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-1"&gt;</p>
+<p class="p1">&lt;button class="p-2 text-slate-500 hover:bg-[#e3f0f8] rounded-full transition-colors"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined"&gt;notifications&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;button class="p-2 text-slate-500 hover:bg-[#e3f0f8] rounded-full transition-colors"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined"&gt;settings&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="h-8 w-[1px] bg-outline-variant/30 mx-2"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;button class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-on-primary-fixed-variant hover:bg-[#e3f0f8] transition-colors"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Export Log</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1">&lt;div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center"&gt;</p>
+<p class="p1">&lt;img alt="Chief Engineer" class="w-8 h-8 rounded-full object-cover" data-alt="Close-up portrait of an experienced marine engineer in a white naval uniform with a serious and authoritative expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYnt7f4nYP0Aq6N0YkLLJnzRN2Ppub9kEEq2Ht53lvJjQhzn3_aGss49ODsD50gNn1mJ7BBnjuX1nPN-Wy8haj8zSewa0C_cxKvewbBuqUsjnnp_M1GqpomZQwtOoZnlifrt5guwz3rWjKJt-92Sz0VNDMJms-QYNcwIB9Wh72DLrU_yPt7PC7i36DwGHpVDlKcnuNoBFUnTsfOS-Gw0L6k-HSbP7bOEk532vLCwUIfLgdlpArlqHIHezRDvn5y9y4G2mXoD6h2zU"/&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/header&gt;</p>
+<p class="p1">&lt;!-- Main Dashboard Content --&gt;</p>
+<p class="p1">&lt;div class="flex-1 overflow-y-auto p-8 space-y-8"&gt;</p>
+<p class="p1">&lt;!-- Bento Grid - Key Telemetry --&gt;</p>
+<p class="p1">&lt;section class="grid grid-cols-1 md:grid-cols-3 gap-6"&gt;</p>
+<p class="p1">&lt;!-- Fleet Hours --&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-surface-container-high"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-outline"&gt;Total Operating Time&lt;/span&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-primary/40"&gt;timer&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;h3 class="text-4xl font-extrabold text-primary tracking-tight"&gt;1,324,580&lt;/h3&gt;</p>
+<p class="p1">&lt;p class="text-xs font-bold text-primary-container uppercase mt-1"&gt;Fleet Hours Accumulated&lt;/p&gt;</p>
+<p class="p1">&lt;div class="mt-6 w-full bg-surface-container h-1 rounded-full overflow-hidden"&gt;</p>
+<p class="p1">&lt;div class="bg-primary h-full w-3/4"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Overdue Tasks --&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-error/20"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-error"&gt;Critical Alerts&lt;/span&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-error"&gt;warning&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;h3 class="text-4xl font-extrabold text-error tracking-tight"&gt;24&lt;/h3&gt;</p>
+<p class="p1">&lt;p class="text-xs font-bold text-error uppercase mt-1"&gt;Overdue Tasks Detected&lt;/p&gt;</p>
+<p class="p1">&lt;div class="mt-6 flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="px-2 py-0.5 bg-error text-white text-[10px] font-bold rounded-full"&gt;HIGH PRIORITY&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] text-outline font-medium"&gt;Requires immediate action&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Upcoming Checks --&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-surface-container-high"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-outline"&gt;Planned Schedule&lt;/span&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-surface-tint"&gt;event_upcoming&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;h3 class="text-4xl font-extrabold text-primary tracking-tight"&gt;42&lt;/h3&gt;</p>
+<p class="p1">&lt;p class="text-xs font-bold text-primary-container uppercase mt-1"&gt;Upcoming Checks (72h)&lt;/p&gt;</p>
+<p class="p1">&lt;div class="mt-6 flex gap-1"&gt;</p>
+<p class="p1">&lt;div class="h-1 flex-1 bg-surface-tint rounded-full"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="h-1 flex-1 bg-surface-tint rounded-full"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="h-1 flex-1 bg-surface-container rounded-full"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div class="h-1 flex-1 bg-surface-container rounded-full"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p1">&lt;!-- Main Data Table Section --&gt;</p>
+<p class="p1">&lt;section class="bg-surface-container-low rounded-xl overflow-hidden"&gt;</p>
+<p class="p1">&lt;div class="p-6 flex justify-between items-center border-b border-outline-variant/10"&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;h2 class="text-lg font-bold text-primary"&gt;Active Maintenance Backlog&lt;/h2&gt;</p>
+<p class="p1">&lt;p class="text-xs text-secondary font-medium mt-1"&gt;Showing all pending items for Engine Room Section A-4&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex gap-2"&gt;</p>
+<p class="p1">&lt;button class="px-3 py-1.5 bg-surface-container-lowest text-[10px] font-bold uppercase tracking-widest text-primary border border-outline-variant/30 rounded flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-sm"&gt;filter_list&lt;/span&gt; Filter</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1">&lt;button class="px-3 py-1.5 bg-primary text-white text-[10px] font-bold uppercase tracking-widest rounded flex items-center gap-2 shadow-lg shadow-primary/20"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-sm"&gt;download&lt;/span&gt; Report</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="overflow-x-auto"&gt;</p>
+<p class="p1">&lt;table class="w-full text-left border-collapse"&gt;</p>
+<p class="p1">&lt;thead class="bg-surface-container text-primary"&gt;</p>
+<p class="p1">&lt;tr&gt;</p>
+<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Component ID&lt;/th&gt;</p>
+<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Description&lt;/th&gt;</p>
+<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Last Check&lt;/th&gt;</p>
+<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Next Due&lt;/th&gt;</p>
+<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Status&lt;/th&gt;</p>
+<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Action&lt;/th&gt;</p>
+<p class="p1">&lt;/tr&gt;</p>
+<p class="p1">&lt;/thead&gt;</p>
+<p class="p1">&lt;tbody class="divide-y divide-outline-variant/5"&gt;</p>
+<p class="p1">&lt;tr class="bg-surface-container-lowest hover:bg-surface-container transition-colors"&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-primary font-mono tracking-tight"&gt;ENG-P-402&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;div class="flex flex-col"&gt;</p>
+<p class="p1">&lt;span class="text-sm font-bold text-primary"&gt;Main Fuel Injection Pump&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] text-outline uppercase font-medium"&gt;Lubrication &amp;amp; Seal Check&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs text-secondary font-medium"&gt;2023-10-12&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-error"&gt;2023-11-20&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="px-3 py-1 bg-error text-white text-[10px] font-bold rounded-full uppercase"&gt;Overdue&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;button class="text-primary-container hover:text-primary transition-colors"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined"&gt;open_in_new&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;/tr&gt;</p>
+<p class="p1">&lt;tr class="bg-surface hover:bg-surface-container transition-colors"&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-primary font-mono tracking-tight"&gt;CMP-A-012&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;div class="flex flex-col"&gt;</p>
+<p class="p1">&lt;span class="text-sm font-bold text-primary"&gt;Air Compressor Unit 2&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] text-outline uppercase font-medium"&gt;Filter Replacement&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs text-secondary font-medium"&gt;2023-11-05&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-primary"&gt;2023-12-15&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="px-3 py-1 bg-[#F1C40F] text-black text-[10px] font-bold rounded-full uppercase"&gt;Upcoming&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;button class="text-primary-container hover:text-primary transition-colors"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined"&gt;open_in_new&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;/tr&gt;</p>
+<p class="p1">&lt;tr class="bg-surface-container-lowest hover:bg-surface-container transition-colors"&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-primary font-mono tracking-tight"&gt;VAL-X-99&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;div class="flex flex-col"&gt;</p>
+<p class="p1">&lt;span class="text-sm font-bold text-primary"&gt;Cylinder Head Valve&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] text-outline uppercase font-medium"&gt;Tappet Clearance Measurement&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs text-secondary font-medium"&gt;2023-11-18&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-primary"&gt;2024-02-20&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;span class="px-3 py-1 bg-[#27AE60] text-white text-[10px] font-bold rounded-full uppercase"&gt;Healthy&lt;/span&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;td class="px-6 py-4"&gt;</p>
+<p class="p1">&lt;button class="text-primary-container hover:text-primary transition-colors"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined"&gt;open_in_new&lt;/span&gt;</p>
+<p class="p1">&lt;/button&gt;</p>
+<p class="p1">&lt;/td&gt;</p>
+<p class="p1">&lt;/tr&gt;</p>
+<p class="p1">&lt;/tbody&gt;</p>
+<p class="p1">&lt;/table&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p1">&lt;!-- Bottom Layout: Visual Telemetry and Logs --&gt;</p>
+<p class="p1">&lt;section class="grid grid-cols-1 lg:grid-cols-2 gap-8"&gt;</p>
+<p class="p1">&lt;!-- Karmole Gas Specifications --&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center mb-6"&gt;</p>
+<p class="p1">&lt;h3 class="text-sm font-black text-primary uppercase tracking-tight"&gt;Karmole Gas Specifications&lt;/h3&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2"&gt;</p>
+<p class="p1">&lt;span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"&gt;&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[9px] font-bold text-secondary uppercase"&gt;Nominal Supply&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-primary text-lg"&gt;compress&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Supply Pressure&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;</p>
+<p class="p1">&lt;span class="text-2xl font-black text-primary"&gt;6.8&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-secondary"&gt;bar&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-primary text-lg"&gt;thermostat&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Temperature&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;</p>
+<p class="p1">&lt;span class="text-2xl font-black text-primary"&gt;42.5&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-secondary"&gt;°C&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-primary text-lg"&gt;local_fire_department&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Calorific Value&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;</p>
+<p class="p1">&lt;span class="text-2xl font-black text-primary"&gt;34.2&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-secondary"&gt;MJ/m³&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
+<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;</p>
+<p class="p1">&lt;span class="material-symbols-outlined text-primary text-lg"&gt;gas_meter&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Methane Number&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;</p>
+<p class="p1">&lt;span class="text-2xl font-black text-primary"&gt;82&lt;/span&gt;</p>
+<p class="p1">&lt;span class="text-xs font-bold text-secondary"&gt;MN&lt;/span&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="mt-4 pt-4 border-t border-outline-variant/10 flex justify-between items-center"&gt;</p>
+<p class="p1">&lt;p class="text-[10px] text-outline font-medium"&gt;Last automated analysis: 14 mins ago&lt;/p&gt;</p>
+<p class="p1">&lt;button class="text-[10px] font-bold text-primary-container uppercase tracking-widest hover:underline"&gt;Full Analytics&lt;/button&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;!-- Recent Activity Feed --&gt;</p>
+<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10"&gt;</p>
+<p class="p1">&lt;div class="flex justify-between items-center mb-6"&gt;</p>
+<p class="p1">&lt;h3 class="text-sm font-black text-primary uppercase tracking-tight"&gt;Recent Deck Logs&lt;/h3&gt;</p>
+<p class="p1">&lt;a class="text-[10px] font-bold uppercase tracking-widest text-primary-container underline underline-offset-4" href="#"&gt;View All&lt;/a&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="space-y-4"&gt;</p>
+<p class="p1">&lt;div class="flex gap-4 items-start"&gt;</p>
+<p class="p1">&lt;div class="w-2 h-2 mt-1.5 rounded-full bg-primary flex-shrink-0"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;p class="text-xs font-bold text-primary leading-tight"&gt;Valve Clearance Adjusted - Cylinder 4&lt;/p&gt;</p>
+<p class="p1">&lt;p class="text-[10px] text-outline mt-0.5 font-medium"&gt;Recorded by 2nd Engineer • 2 hours ago&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex gap-4 items-start"&gt;</p>
+<p class="p1">&lt;div class="w-2 h-2 mt-1.5 rounded-full bg-error flex-shrink-0"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;p class="text-xs font-bold text-primary leading-tight"&gt;High Temp Alarm - FWG Heat Exchanger&lt;/p&gt;</p>
+<p class="p1">&lt;p class="text-[10px] text-outline mt-0.5 font-medium"&gt;Automated System Log • 4 hours ago&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;div class="flex gap-4 items-start"&gt;</p>
+<p class="p1">&lt;div class="w-2 h-2 mt-1.5 rounded-full bg-surface-tint flex-shrink-0"&gt;&lt;/div&gt;</p>
+<p class="p1">&lt;div&gt;</p>
+<p class="p1">&lt;p class="text-xs font-bold text-primary leading-tight"&gt;Quarterly Inspection Started&lt;/p&gt;</p>
+<p class="p1">&lt;p class="text-[10px] text-outline mt-0.5 font-medium"&gt;Chief Engineer Auth • 1 day ago&lt;/p&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/section&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;/main&gt;</p>
+<p class="p1">&lt;/body&gt;&lt;/html&gt;</p>
+</body>
+</html>
