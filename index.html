@@ -1,525 +1,945 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2299.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+<!DOCTYPE html>
+<!-- VitrinVideo MVP: static front-end, no AI API, no live data, no backend, no fetch. -->
+
+<html class="light" lang="tr"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF6B00",
+                        "navy-dark": "#0A1128",
+                        "navy-muted": "#1C2541",
+                        "background-light": "#F8FAFC",
+                    },
+                    fontFamily: {
+                        "display": ["Public Sans"],
+                        "sans": ["Public Sans", "Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "0.75rem", "xl": "1rem", "2xl": "1.5rem", "3xl": "2.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .active-tab {
+            position: relative;
+        }
+        .active-tab::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 3px;
+            background-color: #FF6B00;
+            border-radius: 99px;
+        }
+    </style>
+
+<style id="vv-integrated-final-css">
+  :root{
+    --vv-primary:#FF6B00;
+    --vv-dark:#0A1128;
+    --vv-muted:#1C2541;
+    --vv-bg:#F8FAFC;
+    --vv-accent2:#FDBA74;
+  }
+  body{
+    background:#F8FAFC;
+    padding-bottom:118px;
+  }
+  .vv-phone{
+    border:6px solid #1C2541;
+    box-shadow:0 24px 70px rgba(10,17,40,.35);
+  }
+  #previewMedia{
+    background:linear-gradient(135deg,var(--vv-primary),var(--vv-muted));
+    background-size:cover;
+    background-position:center;
+    transition:.25s ease;
+  }
+  .sector-btn.active .sector-icon{
+    background:rgba(255,107,0,.12)!important;
+    color:#FF6B00!important;
+    box-shadow:0 0 0 2px #FF6B00;
+  }
+  .sector-btn.active .sector-label{
+    color:#FF6B00!important;
+  }
+  .theme-btn.active{
+    border-color:#FF6B00!important;
+    background:rgba(255,107,0,.10)!important;
+    color:#FF6B00!important;
+  }
+  .platform-btn.active{
+    background:#0A1128!important;
+    color:white!important;
+  }
+  .platform-btn.active .material-symbols-outlined{
+    color:white!important;
+  }
+  .format-story .vv-phone{aspect-ratio:9/16;}
+  .format-reels .vv-phone{aspect-ratio:9/16;}
+  .format-whatsapp .vv-phone{aspect-ratio:9/16;border-color:#128C7E;}
+  .format-post .vv-phone{aspect-ratio:1/1;border-radius:2rem!important;}
+  .vv-card{
+    background:white;
+    border:1px solid #EEF2F7;
+    border-radius:1.5rem;
+    box-shadow:0 14px 34px rgba(10,17,40,.07);
+  }
+  .vv-bottom{
+    background:linear-gradient(to top,#F8FAFC 60%,rgba(248,250,252,0));
+  }
+  .vv-sheet{
+    transform:translateY(110%);
+    transition:.28s ease;
+  }
+  .vv-sheet.open{
+    transform:translateY(0);
+  }
+  .vv-overlay{
+    opacity:0;
+    pointer-events:none;
+    transition:.22s ease;
+  }
+  .vv-overlay.open{
+    opacity:1;
+    pointer-events:auto;
+  }
+  @media(min-width:980px){
+    .vv-desktop{
+      display:grid;
+      grid-template-columns:minmax(390px,.95fr) minmax(360px,1.05fr);
+      gap:24px;
+      align-items:start;
+      max-width:1180px;
+      margin:0 auto;
+    }
+    .vv-preview-wrap{
+      position:sticky;
+      top:86px;
+    }
+  }
+</style>
+
+
+<style id="vv-preset-upgrade-css">
+  .vv-card{box-shadow:0 18px 44px rgba(10,17,40,.075)!important}
+  .preset-card{position:relative;overflow:hidden;min-height:106px;border:1px solid #EEF2F7;border-radius:1.25rem;padding:14px;text-align:left;background:linear-gradient(135deg,#fff,#F8FAFC);transition:.18s ease}
+  .preset-card:before{content:"";position:absolute;inset:auto -28px -34px auto;width:90px;height:90px;border-radius:999px;background:color-mix(in srgb,var(--vv-primary) 14%, transparent)}
+  .preset-card:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--vv-primary) 35%, #EEF2F7);box-shadow:0 16px 34px rgba(10,17,40,.08)}
+  .preset-card.active{border-color:var(--vv-primary);background:linear-gradient(135deg,color-mix(in srgb,var(--vv-primary) 10%, white),#fff);box-shadow:0 0 0 3px color-mix(in srgb,var(--vv-primary) 10%, transparent)}
+  .preset-card .preset-icon{width:34px;height:34px;border-radius:13px;display:grid;place-items:center;color:var(--vv-primary);background:color-mix(in srgb,var(--vv-primary) 11%, white);margin-bottom:9px}
+  .preset-card b{display:block;color:#0A1128;font-size:13px;line-height:1.1;position:relative;z-index:1}
+  .preset-card small{display:block;margin-top:5px;color:#64748B;font-size:10px;line-height:1.35;position:relative;z-index:1}
+  @media(max-width:720px){#presetGrid{grid-template-columns:1fr 1fr!important}.preset-card{min-height:98px;padding:12px}.preset-card b{font-size:12px}}
+</style>
+
+
+<style id="vv-multi-media-css">
+.media-card{
+  position:relative;
+  min-width:96px;
+  height:96px;
+  border-radius:1rem;
+  overflow:hidden;
+  background:linear-gradient(135deg,var(--vv-primary),#0A1128);
+  border:2px solid transparent;
+  box-shadow:0 10px 22px rgba(10,17,40,.08);
+}
+.media-card.active{
+  border-color:#FF6B00;
+  box-shadow:0 0 0 3px rgba(255,107,0,.16);
+}
+.media-card .media-bg{
+  position:absolute;
+  inset:0;
+  background-size:cover;
+  background-position:center;
+}
+.media-card .media-number{
+  position:absolute;
+  top:7px;
+  left:7px;
+  width:22px;
+  height:22px;
+  border-radius:999px;
+  display:grid;
+  place-items:center;
+  background:rgba(0,0,0,.55);
+  color:white;
+  font-size:10px;
+  font-weight:900;
+}
+.media-card .media-remove{
+  position:absolute;
+  top:6px;
+  right:6px;
+  width:22px;
+  height:22px;
+  border-radius:999px;
+  border:0;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.86);
+  color:#0A1128;
+  font-weight:900;
+  font-size:13px;
+}
+.slide-dot{
+  width:20px;
+  height:3px;
+  border-radius:999px;
+  background:rgba(255,255,255,.35);
+}
+.slide-dot.active{
+  background:#fff;
+}
+</style>
+
+
+<style id="vv-story-template-clean-css">
+  #mediaCountLabel{
+    display:none!important;
+  }
+  #storyTemplateStrip{
+    margin-bottom:2px;
+  }
+  .story-template{
+    height:42px;
+    border-radius:16px;
+    background:#F1F5F9;
+    color:#64748B;
+    font-size:11px;
+    font-weight:900;
+    border:1px solid #E2E8F0;
+  }
+  .story-template.active{
+    background:#0A1128;
+    color:white;
+    border-color:#0A1128;
+    box-shadow:0 10px 22px rgba(10,17,40,.14);
+  }
+  .media-card{
+    min-width:112px!important;
+    height:150px!important;
+    border-radius:1.35rem!important;
+    background:#0A1128!important;
+  }
+  .media-card:after{
+    content:"Story";
+    position:absolute;
+    left:8px;
+    bottom:8px;
+    padding:5px 7px;
+    border-radius:999px;
+    background:rgba(255,255,255,.88);
+    color:#0A1128;
+    font-size:9px;
+    font-weight:900;
+  }
+  .media-card .media-number{
+    background:var(--vv-primary)!important;
+    color:white!important;
+  }
+  .media-card.active{
+    border-color:var(--vv-primary)!important;
+    box-shadow:0 0 0 3px color-mix(in srgb,var(--vv-primary) 18%, transparent)!important;
+  }
+  /* Önizleme alanı: sadece telefon hissi */
+  .vv-preview-wrap{
+    padding-top:18px!important;
+    padding-bottom:34px!important;
+  }
+  .vv-preview-wrap > div{
+    margin-left:auto!important;
+    margin-right:auto!important;
+  }
+  #platformMini{
+    font-size:9px!important;
+    opacity:.92;
+  }
+  /* Mobile: phone remains hero, surrounding copy minimized */
+  @media(max-width:720px){
+    .vv-preview-wrap{
+      padding-bottom:28px!important;
+      border-bottom-left-radius:2rem!important;
+      border-bottom-right-radius:2rem!important;
+    }
+    .media-card{
+      min-width:98px!important;
+      height:138px!important;
+    }
+  }
+</style>
+
+
+<style id="vv-media-kind-css">
+  .media-card:after{display:none!important}
+  .media-kind{
+    position:absolute;
+    left:8px;
+    bottom:8px;
+    padding:5px 7px;
+    border-radius:999px;
+    background:rgba(255,255,255,.9);
+    color:#0A1128;
+    font-size:9px;
+    font-weight:900;
+  }
+</style>
+
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p2"><br></p>
-<p class="p1">&lt;html class="light" lang="en"&gt;&lt;head&gt;</p>
-<p class="p1">&lt;meta charset="utf-8"/&gt;</p>
-<p class="p1">&lt;meta content="width=device-width, initial-scale=1.0" name="viewport"/&gt;</p>
-<p class="p1">&lt;script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"&gt;&lt;/script&gt;</p>
-<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
-<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;amp;display=swap" rel="stylesheet"/&gt;</p>
-<p class="p1">&lt;script id="tailwind-config"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tailwind.config = {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>darkMode: "class",</p>
-<p class="p1"><span class="Apple-converted-space">        </span>theme: {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>extend: {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>colors: {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-high": "#ddeaf2",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container": "#e3f0f8",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"error": "#ba1a1a",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"outline": "#737780",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-fixed": "#ffdbca",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-container": "#4e6874",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"secondary": "#48626e",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-fixed": "#341100",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"secondary-fixed-dim": "#afcbd8",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-dim": "#cfdce4",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-error": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-background": "#111d23",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"secondary-container": "#cbe7f5",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-fixed-variant": "#723610",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"tertiary": "#381300",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-error-container": "#93000a",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-highest": "#d7e4ec",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"error-container": "#ffdad6",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-container": "#6b9edf",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"inverse-surface": "#263238",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-lowest": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-tint": "#27609d",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-fixed-variant": "#304a55",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-primary": "#ffffff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"inverse-on-surface": "#e6f3fb",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-fixed-variant": "#004882",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface": "#f4faff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-container": "#592300",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-variant": "#d7e4ec",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"outline-variant": "#c3c6d1",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"primary-container": "#003461",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-container-low": "#e9f6fd",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"tertiary-fixed-dim": "#ffb690",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"primary-fixed": "#d3e4ff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"surface-bright": "#f4faff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-primary-fixed": "#001c38",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"inverse-primary": "#a3c9ff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"secondary-fixed": "#cbe7f5",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"primary": "#001f3d",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-secondary-fixed": "#021f29",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"primary-fixed-dim": "#a3c9ff",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-tertiary-container": "#d8885c",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-surface-variant": "#43474f",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"on-surface": "#111d23",</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"background": "#f4faff"</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>fontFamily: {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"headline": ["Inter"],</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"body": ["Inter"],</p>
-<p class="p1"><span class="Apple-converted-space">              </span>"label": ["Inter"]</p>
-<p class="p1"><span class="Apple-converted-space">            </span>},</p>
-<p class="p1"><span class="Apple-converted-space">            </span>borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},</p>
-<p class="p1"><span class="Apple-converted-space">          </span>},</p>
-<p class="p1"><span class="Apple-converted-space">        </span>},</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
-<p class="p1">&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>body { font-family: 'Inter', sans-serif; }</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.material-symbols-outlined {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>vertical-align: middle;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.sidebar-active-fill {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-variation-settings: 'FILL' 1 !important;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-item.active {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(to right, #001f3d, #003461);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>color: white !important;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>border-right: 4px solid #60a5fa;</p>
-<p class="p1"><span class="Apple-converted-space">            </span>transform: translateX(4px);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.nav-item.active span:first-child {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>font-variation-settings: 'FILL' 1;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.hidden-content {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>.authoritative-gradient { background: linear-gradient(135deg, #001f3d 0%, #003461 100%); }</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="bg-surface text-on-surface flex overflow-hidden h-screen"&gt;</p>
-<p class="p1">&lt;!-- SideNavBar --&gt;</p>
-<p class="p1">&lt;aside class="fixed left-0 top-0 h-full w-72 bg-[#001f3d]/90 dark:bg-slate-950/90 backdrop-blur-xl flex flex-col border-r border-blue-900/10 shadow-2xl shadow-blue-900/20 z-50"&gt;</p>
-<p class="p1">&lt;div class="p-6"&gt;</p>
-<p class="p1">&lt;div class="flex items-center space-x-3 mb-8"&gt;</p>
-<p class="p1">&lt;div class="w-10 h-10 bg-primary-container rounded flex items-center justify-center"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;"&gt;directions_boat&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div&gt;</p>
-<p class="p1">&lt;h2 class="text-white font-bold text-sm tracking-tight leading-none uppercase"&gt;KPS8 OSMAN BEY&lt;/h2&gt;</p>
-<p class="p1">&lt;p class="text-blue-100/60 text-[10px] font-bold uppercase tracking-widest mt-1"&gt;Operational&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;nav class="space-y-1" id="sidebar-nav"&gt;</p>
-<p class="p1">&lt;a class="nav-item active flex items-center gap-3 px-4 py-3 rounded-md text-blue-100/70 hover:text-white transition-all duration-200 cursor-pointer" data-section="dashboard"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;dashboard&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Dashboard&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="spark-plug"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;settings_input_component&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Spark Plug&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="pcc"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;settings_input_composite&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;PCC (Non Return Valve)&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="valve"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;straighten&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Valve Measurement&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="starting-air"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;air&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Starting Air Compressors&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="denox"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;compress&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Denox Compressors&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="control-air"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;mode_fan&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Control Air Compressors&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="fwg"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;water_drop&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;FWG&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="pumps"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;ev_station&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Pumps&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="nav-item flex items-center gap-3 text-blue-100/70 hover:text-white px-4 py-3 hover:bg-white/5 transition-all duration-200 cursor-pointer" data-section="lube-oil"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[20px]"&gt;oil_barrel&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest"&gt;Lube Oil System&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;/nav&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="mt-auto p-6 space-y-4"&gt;</p>
-<p class="p1">&lt;button class="w-full py-3 bg-blue-500 hover:bg-blue-400 text-[#001f3d] font-bold text-[10px] uppercase tracking-widest rounded transition-colors flex items-center justify-center gap-2"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-sm"&gt;add&lt;/span&gt; Add Maintenance Log</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/button&gt;</p>
-<p class="p1">&lt;div class="flex flex-col gap-2 pt-4 border-t border-blue-900/20"&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/50 hover:text-white transition-colors cursor-pointer"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[18px]"&gt;monitor_heart&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest"&gt;System Health&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;a class="flex items-center gap-3 text-blue-100/50 hover:text-white transition-colors cursor-pointer"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-[18px]"&gt;help&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest"&gt;Support&lt;/span&gt;</p>
-<p class="p1">&lt;/a&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/aside&gt;</p>
-<p class="p1">&lt;!-- Content Shell --&gt;</p>
-<p class="p1">&lt;main class="flex-1 ml-72 flex flex-col h-full overflow-hidden"&gt;</p>
-<p class="p1">&lt;!-- TopNavBar --&gt;</p>
-<p class="p1">&lt;header class="bg-[#f4faff] flex justify-between items-center w-full px-8 py-3 h-16 border-b-0 sticky top-0 z-40"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-8"&gt;</p>
-<p class="p1">&lt;h1 class="text-xl font-black text-[#001f3d] tracking-tighter uppercase"&gt;KPS8 OSMAN BEY | PMS&lt;/h1&gt;</p>
-<p class="p1">&lt;nav class="hidden md:flex items-center gap-6"&gt;</p>
-<p class="p1">&lt;a class="text-[#001f3d] font-bold border-b-2 border-[#001f3d] pb-1 text-sm Inter tracking-tight" href="#"&gt;Fleet Dashboard&lt;/a&gt;</p>
-<p class="p1">&lt;a class="text-slate-500 hover:bg-[#e3f0f8] transition-colors px-2 py-1 rounded text-sm Inter tracking-tight" href="#"&gt;Vessel Status&lt;/a&gt;</p>
-<p class="p1">&lt;a class="text-slate-500 hover:bg-[#e3f0f8] transition-colors px-2 py-1 rounded text-sm Inter tracking-tight" href="#"&gt;Crew Info&lt;/a&gt;</p>
-<p class="p1">&lt;/nav&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-4"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-1"&gt;</p>
-<p class="p1">&lt;button class="p-2 text-slate-500 hover:bg-[#e3f0f8] rounded-full transition-colors"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined"&gt;notifications&lt;/span&gt;</p>
-<p class="p1">&lt;/button&gt;</p>
-<p class="p1">&lt;button class="p-2 text-slate-500 hover:bg-[#e3f0f8] rounded-full transition-colors"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined"&gt;settings&lt;/span&gt;</p>
-<p class="p1">&lt;/button&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-8 w-[1px] bg-outline-variant/30 mx-2"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;button class="px-4 py-2 text-xs font-bold uppercase tracking-widest text-on-primary-fixed-variant hover:bg-[#e3f0f8] transition-colors"&gt;Export Log&lt;/button&gt;</p>
-<p class="p1">&lt;div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center"&gt;</p>
-<p class="p1">&lt;img alt="Chief Engineer" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYnt7f4nYP0Aq6N0YkLLJnzRN2Ppub9kEEq2Ht53lvJjQhzn3_aGss49ODsD50gNn1mJ7BBnjuX1nPN-Wy8haj8zSewa0C_cxKvewbBuqUsjnnp_M1GqpomZQwtOoZnlifrt5guwz3rWjKJt-92Sz0VNDMJms-QYNcwIB9Wh72DLrU_yPt7PC7i36DwGHpVDlKcnuNoBFUnTsfOS-Gw0L6k-HSbP7bOEk532vLCwUIfLgdlpArlqHIHezRDvn5y9y4G2mXoD6h2zU"/&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/header&gt;</p>
-<p class="p1">&lt;!-- Content Sections --&gt;</p>
-<p class="p1">&lt;div class="flex-1 overflow-y-auto" id="content-container"&gt;</p>
-<p class="p1">&lt;!-- Dashboard Section --&gt;</p>
-<p class="p1">&lt;div class="p-8 space-y-8" id="dashboard"&gt;</p>
-<p class="p1">&lt;section class="grid grid-cols-1 md:grid-cols-3 gap-6"&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-surface-container-high"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-outline"&gt;Total Operating Time&lt;/span&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-primary/40"&gt;timer&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;h3 class="text-4xl font-extrabold text-primary tracking-tight"&gt;1,324,580&lt;/h3&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-primary-container uppercase mt-1"&gt;Fleet Hours Accumulated&lt;/p&gt;</p>
-<p class="p1">&lt;div class="mt-6 w-full bg-surface-container h-1 rounded-full overflow-hidden"&gt;&lt;div class="bg-primary h-full w-3/4"&gt;&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-error/20"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-error"&gt;Critical Alerts&lt;/span&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-error"&gt;warning&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;h3 class="text-4xl font-extrabold text-error tracking-tight"&gt;24&lt;/h3&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-error uppercase mt-1"&gt;Overdue Tasks Detected&lt;/p&gt;</p>
-<p class="p1">&lt;div class="mt-6 flex items-center gap-2"&gt;</p>
-<p class="p1">&lt;span class="px-2 py-0.5 bg-error text-white text-[10px] font-bold rounded-full"&gt;HIGH PRIORITY&lt;/span&gt;</p>
-<p class="p1">&lt;span class="text-[10px] text-outline font-medium"&gt;Requires immediate action&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-lg border-b-2 border-surface-container-high"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-start mb-4"&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold uppercase tracking-widest text-outline"&gt;Planned Schedule&lt;/span&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-surface-tint"&gt;event_upcoming&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;h3 class="text-4xl font-extrabold text-primary tracking-tight"&gt;42&lt;/h3&gt;</p>
-<p class="p1">&lt;p class="text-xs font-bold text-primary-container uppercase mt-1"&gt;Upcoming Checks (72h)&lt;/p&gt;</p>
-<p class="p1">&lt;div class="mt-6 flex gap-1"&gt;</p>
-<p class="p1">&lt;div class="h-1 flex-1 bg-surface-tint rounded-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-1 flex-1 bg-surface-tint rounded-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-1 flex-1 bg-surface-container rounded-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-1 flex-1 bg-surface-container rounded-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p1">&lt;section class="bg-surface-container-low rounded-xl overflow-hidden"&gt;</p>
-<p class="p1">&lt;div class="p-6 flex justify-between items-center border-b border-outline-variant/10"&gt;</p>
-<p class="p1">&lt;div&gt;</p>
-<p class="p1">&lt;h2 class="text-lg font-bold text-primary"&gt;Active Maintenance Backlog&lt;/h2&gt;</p>
-<p class="p1">&lt;p class="text-xs text-secondary font-medium mt-1"&gt;Showing all pending items for Engine Room Section A-4&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex gap-2"&gt;</p>
-<p class="p1">&lt;button class="px-3 py-1.5 bg-surface-container-lowest text-[10px] font-bold uppercase tracking-widest text-primary border border-outline-variant/30 rounded flex items-center gap-2"&gt;&lt;span class="material-symbols-outlined text-sm"&gt;filter_list&lt;/span&gt; Filter&lt;/button&gt;</p>
-<p class="p1">&lt;button class="px-3 py-1.5 bg-primary text-white text-[10px] font-bold uppercase tracking-widest rounded flex items-center gap-2 shadow-lg shadow-primary/20"&gt;&lt;span class="material-symbols-outlined text-sm"&gt;download&lt;/span&gt; Report&lt;/button&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="overflow-x-auto"&gt;</p>
-<p class="p1">&lt;table class="w-full text-left border-collapse"&gt;</p>
-<p class="p1">&lt;thead class="bg-surface-container text-primary"&gt;</p>
-<p class="p1">&lt;tr&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Component ID&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Description&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Last Check&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Next Due&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Status&lt;/th&gt;</p>
-<p class="p1">&lt;th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest"&gt;Action&lt;/th&gt;</p>
-<p class="p1">&lt;/tr&gt;</p>
-<p class="p1">&lt;/thead&gt;</p>
-<p class="p1">&lt;tbody class="divide-y divide-outline-variant/5 bg-white"&gt;</p>
-<p class="p1">&lt;tr&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;span class="text-xs font-bold text-primary font-mono tracking-tight"&gt;ENG-P-402&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;div class="flex flex-col"&gt;&lt;span class="text-sm font-bold text-primary"&gt;Main Fuel Injection Pump&lt;/span&gt;&lt;span class="text-[10px] text-outline uppercase font-medium"&gt;Lubrication &amp;amp; Seal Check&lt;/span&gt;&lt;/div&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;span class="text-xs text-secondary font-medium"&gt;2023-10-12&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;span class="text-xs font-bold text-error"&gt;2023-11-20&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;span class="px-3 py-1 bg-error text-white text-[10px] font-bold rounded-full uppercase"&gt;Overdue&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;button class="text-primary-container hover:text-primary transition-colors"&gt;&lt;span class="material-symbols-outlined"&gt;open_in_new&lt;/span&gt;&lt;/button&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;/tr&gt;</p>
-<p class="p1">&lt;tr class="bg-slate-50/30"&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;span class="text-xs font-bold text-primary font-mono tracking-tight"&gt;CMP-A-012&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;div class="flex flex-col"&gt;&lt;span class="text-sm font-bold text-primary"&gt;Air Compressor Unit 2&lt;/span&gt;&lt;span class="text-[10px] text-outline uppercase font-medium"&gt;Filter Replacement&lt;/span&gt;&lt;/div&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;span class="text-xs text-secondary font-medium"&gt;2023-11-05&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;span class="text-xs font-bold text-primary"&gt;2023-12-15&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;span class="px-3 py-1 bg-[#F1C40F] text-black text-[10px] font-bold rounded-full uppercase"&gt;Upcoming&lt;/span&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;td class="px-6 py-4"&gt;&lt;button class="text-primary-container hover:text-primary transition-colors"&gt;&lt;span class="material-symbols-outlined"&gt;open_in_new&lt;/span&gt;&lt;/button&gt;&lt;/td&gt;</p>
-<p class="p1">&lt;/tr&gt;</p>
-<p class="p1">&lt;/tbody&gt;</p>
-<p class="p1">&lt;/table&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p1">&lt;section class="grid grid-cols-1 lg:grid-cols-2 gap-8"&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-low p-6 rounded-xl border border-outline-variant/10"&gt;</p>
-<p class="p1">&lt;h3 class="text-sm font-black text-primary uppercase tracking-tight mb-6"&gt;Karmole Gas Specifications&lt;/h3&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-2 gap-4"&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;&lt;span class="material-symbols-outlined text-primary text-lg"&gt;compress&lt;/span&gt;&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Supply Pressure&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;&lt;span class="text-2xl font-black text-primary"&gt;6.8&lt;/span&gt;&lt;span class="text-xs font-bold text-secondary"&gt;bar&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-4 border border-outline-variant/10 rounded-lg"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-2 mb-2"&gt;&lt;span class="material-symbols-outlined text-primary text-lg"&gt;thermostat&lt;/span&gt;&lt;span class="text-[10px] font-bold text-outline uppercase tracking-wider"&gt;Temperature&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-baseline gap-1"&gt;&lt;span class="text-2xl font-black text-primary"&gt;42.5&lt;/span&gt;&lt;span class="text-xs font-bold text-secondary"&gt;°C&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-surface-container-lowest p-6 rounded-xl border border-outline-variant/10"&gt;</p>
-<p class="p1">&lt;h3 class="text-sm font-black text-primary uppercase tracking-tight mb-6"&gt;Recent Deck Logs&lt;/h3&gt;</p>
-<p class="p1">&lt;div class="space-y-4"&gt;</p>
-<p class="p1">&lt;div class="flex gap-4 items-start"&gt;&lt;div class="w-2 h-2 mt-1.5 rounded-full bg-primary flex-shrink-0"&gt;&lt;/div&gt;&lt;div&gt;&lt;p class="text-xs font-bold text-primary leading-tight"&gt;Valve Clearance Adjusted - Cylinder 4&lt;/p&gt;&lt;p class="text-[10px] text-outline mt-0.5 font-medium"&gt;Recorded by 2nd Engineer • 2 hours ago&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex gap-4 items-start"&gt;&lt;div class="w-2 h-2 mt-1.5 rounded-full bg-error flex-shrink-0"&gt;&lt;/div&gt;&lt;div&gt;&lt;p class="text-xs font-bold text-primary leading-tight"&gt;High Temp Alarm - FWG Heat Exchanger&lt;/p&gt;&lt;p class="text-[10px] text-outline mt-0.5 font-medium"&gt;Automated System Log • 4 hours ago&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- Spark Plug Section (Based on SCREEN_13) --&gt;</p>
-<p class="p1">&lt;div class="hidden-content p-8 space-y-10" id="spark-plug"&gt;</p>
-<p class="p1">&lt;div class="flex flex-col md:flex-row justify-between items-end gap-6"&gt;</p>
-<p class="p1">&lt;div&gt;</p>
-<p class="p1">&lt;nav class="flex text-xs font-bold tracking-widest text-on-surface-variant uppercase mb-2"&gt;</p>
-<p class="p1">&lt;span class="opacity-50"&gt;Engines&lt;/span&gt;&lt;span class="mx-2 opacity-50"&gt;/&lt;/span&gt;&lt;span class="text-primary"&gt;Engine 1 (MAN 51/60 GTS)&lt;/span&gt;</p>
-<p class="p1">&lt;/nav&gt;</p>
-<p class="p1">&lt;h1 class="text-4xl font-black text-primary tracking-tight"&gt;Spark Plug Maintenance&lt;/h1&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex gap-1 overflow-x-auto no-scrollbar max-w-[500px] bg-surface-container p-1 rounded-lg"&gt;</p>
-<p class="p1">&lt;button class="px-4 py-2 bg-primary text-white text-xs font-bold rounded shadow-sm"&gt;E-01&lt;/button&gt;</p>
-<p class="p1">&lt;button class="px-4 py-2 hover:bg-white text-xs font-bold rounded transition-colors"&gt;E-02&lt;/button&gt;</p>
-<p class="p1">&lt;button class="px-4 py-2 hover:bg-white text-xs font-bold rounded transition-colors"&gt;E-03&lt;/button&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-1 md:grid-cols-4 gap-6"&gt;</p>
-<p class="p1">&lt;div class="bg-white p-6 rounded shadow-sm border-l-4 border-primary"&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant"&gt;Global Engine Hours&lt;/span&gt;</p>
-<p class="p1">&lt;div class="text-3xl font-black text-primary mt-1"&gt;12,450 &lt;span class="text-sm font-medium"&gt;HRS&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-white p-6 rounded shadow-sm border-l-4 border-error"&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant"&gt;Due for Service&lt;/span&gt;</p>
-<p class="p1">&lt;div class="text-3xl font-black text-error mt-1"&gt;04 &lt;span class="text-sm font-medium"&gt;CYL&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-1 xl:grid-cols-3 gap-10"&gt;</p>
-<p class="p1">&lt;div class="xl:col-span-2 space-y-10"&gt;</p>
-<p class="p1">&lt;section&gt;</p>
-<p class="p1">&lt;div class="flex items-center justify-between mb-6 border-b border-outline-variant/30 pb-2"&gt;</p>
-<p class="p1">&lt;h2 class="text-xl font-extrabold text-primary flex items-center gap-2"&gt;&lt;span class="w-8 h-8 authoritative-gradient text-white rounded flex items-center justify-center text-sm"&gt;A&lt;/span&gt; A-BANK CYLINDERS&lt;/h2&gt;</p>
-<p class="p1">&lt;span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest"&gt;9 Active Units&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"&gt;</p>
-<p class="p1">&lt;div class="bg-white p-5 rounded-xl border-2 border-primary shadow-lg relative"&gt;</p>
-<p class="p1">&lt;div class="absolute top-0 right-0 p-2"&gt;&lt;span class="bg-[#27AE60] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase"&gt;Healthy&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-4 mb-4"&gt;&lt;div class="w-12 h-12 bg-surface-container flex items-center justify-center rounded-lg"&gt;&lt;span class="text-xl font-black text-primary"&gt;A1&lt;/span&gt;&lt;/div&gt;&lt;div class="text-xl font-black text-[#27AE60]"&gt;7,550 HRS&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="space-y-3 text-sm"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between border-b pb-2"&gt;&lt;span&gt;Last Replace&lt;/span&gt;&lt;span class="font-bold"&gt;4,900 HRS&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex justify-between"&gt;&lt;span&gt;Current Running&lt;/span&gt;&lt;span class="font-bold text-primary"&gt;12,450 HRS&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="space-y-6"&gt;</p>
-<p class="p1">&lt;div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-outline-variant/10"&gt;</p>
-<p class="p1">&lt;div class="authoritative-gradient p-6 text-white"&gt;</p>
-<p class="p1">&lt;h3 class="text-lg font-bold uppercase tracking-widest"&gt;Detailed Log: A1&lt;/h3&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-2 gap-4 mt-4"&gt;</p>
-<p class="p1">&lt;div&gt;&lt;div class="text-[10px] opacity-60 font-bold uppercase"&gt;Serial No.&lt;/div&gt;&lt;div class="font-mono text-sm"&gt;SPK-992-001-A1&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div&gt;&lt;div class="text-[10px] opacity-60 font-bold uppercase"&gt;Date&lt;/div&gt;&lt;div class="font-mono text-sm"&gt;22 MAY 2023&lt;/div&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="p-6"&gt;</p>
-<p class="p1">&lt;img alt="Spark Plug" class="w-full h-48 object-cover rounded-xl mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrk7y0B1LvJSTuiQBJ6s4Hks9y9z38KIbC4tyHIa3h8Q4_vbu8M7Pwfo9eGXuJE5h5lWd8eJMsaFXMJkl7TcM1B-8ApRZBu8GwerUULmI6Y1tGpFipSTRGoHl4V_gOxwT4mv7qFoKWKPFv2I1F1Tp0GGLuOgNJj7MgSyJTFzjIRj-8vfisKgaxA9djl-NjukcIMablUOGnCU0aMfxPlVn5NZkD8JeNpL4PS9rAQbRRhJgKQq8dJJONQi7hNiBjBA_4hH15H78Bp4k"/&gt;</p>
-<p class="p1">&lt;h4 class="text-xs font-black text-primary uppercase tracking-widest mb-4"&gt;Timeline&lt;/h4&gt;</p>
-<p class="p1">&lt;div class="space-y-4 text-xs"&gt;</p>
-<p class="p1">&lt;div class="border-l-2 pl-4 pb-2"&gt;&lt;strong&gt;Interim Inspection&lt;/strong&gt;&lt;p class="mt-1"&gt;Electrodes cleaned, gap adjusted to 0.45mm.&lt;/p&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- PCC Section (Based on SCREEN_14) --&gt;</p>
-<p class="p1">&lt;div class="hidden-content p-8 space-y-8" id="pcc"&gt;</p>
-<p class="p1">&lt;h2 class="text-3xl font-extrabold text-primary tracking-tight"&gt;PCC (Non-Return Valve) Maintenance&lt;/h2&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-4 gap-6"&gt;</p>
-<p class="p1">&lt;div class="bg-white p-6 rounded-xl border-b-2 border-primary shadow-sm"&gt;</p>
-<p class="p1">&lt;span class="text-xs uppercase tracking-widest text-slate-500"&gt;Running Hours&lt;/span&gt;</p>
-<p class="p1">&lt;div class="text-4xl font-black text-primary mt-1"&gt;24,582 &lt;span class="text-sm font-bold opacity-40"&gt;HRS&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="bg-white p-6 rounded-xl shadow-sm"&gt;</p>
-<p class="p1">&lt;span class="text-xs uppercase tracking-widest text-slate-500"&gt;Active Alerts&lt;/span&gt;</p>
-<p class="p1">&lt;div class="text-4xl font-black text-error mt-1"&gt;03 &lt;span class="material-symbols-outlined mb-1 ml-2"&gt;warning&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;section class="space-y-4"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-center bg-surface-container-low px-6 py-3 rounded-lg"&gt;</p>
-<p class="p1">&lt;div class="flex items-center gap-3"&gt;&lt;span class="w-8 h-8 rounded-full authoritative-gradient text-white flex items-center justify-center font-bold"&gt;A&lt;/span&gt;&lt;h3 class="text-lg font-extrabold text-primary uppercase"&gt;A-Bank (Cylinders 1-9)&lt;/h3&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-5 gap-4"&gt;</p>
-<p class="p1">&lt;div class="bg-white p-5 rounded-xl shadow-sm border-t-4 border-green-500"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between mb-4"&gt;&lt;span class="text-2xl font-black text-primary"&gt;CYL 01&lt;/span&gt;&lt;span class="px-3 py-1 bg-green-500 text-white text-[10px] font-black rounded-full"&gt;OK&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="text-[10px] text-slate-500 uppercase"&gt;Last Maintenance&lt;/div&gt;</p>
-<p class="p1">&lt;div class="text-sm font-bold"&gt;12,582 hrs&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/section&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- Valve Section (Based on SCREEN_40) --&gt;</p>
-<p class="p1">&lt;div class="hidden-content p-8 space-y-8" id="valve"&gt;</p>
-<p class="p1">&lt;h2 class="text-4xl font-extrabold text-primary tracking-tighter"&gt;Valve Measurement System&lt;/h2&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-2 gap-8"&gt;</p>
-<p class="p1">&lt;div class="bg-white rounded-2xl shadow-sm border overflow-hidden"&gt;</p>
-<p class="p1">&lt;div class="p-6 bg-surface-container-low flex justify-between items-center"&gt;</p>
-<p class="p1">&lt;h3 class="text-xl font-bold text-primary"&gt;ME-01 (Main Engine)&lt;/h3&gt;</p>
-<p class="p1">&lt;span class="px-3 py-1 bg-error text-white text-[10px] font-black rounded-full uppercase"&gt;Due&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="p-6"&gt;</p>
-<p class="p1">&lt;table class="w-full text-sm"&gt;</p>
-<p class="p1">&lt;thead class="text-[10px] uppercase text-slate-400 font-black border-b"&gt;&lt;tr class="text-left"&gt;&lt;th class="pb-2"&gt;Unit&lt;/th&gt;&lt;th class="pb-2 text-center"&gt;Inlet (mm)&lt;/th&gt;&lt;th class="pb-2 text-center"&gt;Exhaust (mm)&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</p>
-<p class="p1">&lt;tbody class="divide-y"&gt;</p>
-<p class="p1">&lt;tr&gt;&lt;td class="py-3 font-bold"&gt;U1&lt;/td&gt;&lt;td class="text-center"&gt;0.45 / 0.46&lt;/td&gt;&lt;td class="text-center"&gt;0.88 / 0.90&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1">&lt;tr&gt;&lt;td class="py-3 font-bold text-error"&gt;U2&lt;/td&gt;&lt;td class="text-center"&gt;0.44 / 0.44&lt;/td&gt;&lt;td class="text-center font-bold text-error"&gt;0.95 / 0.96&lt;/td&gt;&lt;/tr&gt;</p>
-<p class="p1">&lt;/tbody&gt;</p>
-<p class="p1">&lt;/table&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- Starting Air Section (Based on SCREEN_23) --&gt;</p>
-<p class="p1">&lt;div class="hidden-content p-8 space-y-10" id="starting-air"&gt;</p>
-<p class="p1">&lt;h1 class="text-4xl font-black text-primary tracking-tight"&gt;Engine Deck Level 2&lt;/h1&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-2 gap-8"&gt;</p>
-<p class="p1">&lt;div class="bg-white rounded-xl p-8 shadow-sm border border-slate-100 relative"&gt;</p>
-<p class="p1">&lt;div class="absolute top-0 left-0 w-2 h-full bg-error rounded-l-xl"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;h4 class="text-2xl font-black text-primary mb-6"&gt;Starting Air Compressor 1&lt;/h4&gt;</p>
-<p class="p1">&lt;div class="bg-slate-50 p-6 rounded-lg mb-6"&gt;</p>
-<p class="p1">&lt;span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest"&gt;Running Hours&lt;/span&gt;</p>
-<p class="p1">&lt;div class="text-3xl font-black text-primary mt-1"&gt;12,450 &lt;span class="text-xs"&gt;HRS&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="space-y-4"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between border-b pb-2"&gt;&lt;span&gt;Filter Replacement&lt;/span&gt;&lt;span class="text-error font-bold uppercase text-xs"&gt;Overdue&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="flex justify-between"&gt;&lt;span&gt;Lube Oil Change&lt;/span&gt;&lt;span class="text-green-500 font-bold uppercase text-xs"&gt;Healthy&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- Lube Oil Section (Based on SCREEN_26) --&gt;</p>
-<p class="p1">&lt;div class="hidden-content p-8 space-y-8" id="lube-oil"&gt;</p>
-<p class="p1">&lt;h2 class="text-3xl font-black text-primary tracking-tighter"&gt;Lube Oil Analytics&lt;/h2&gt;</p>
-<p class="p1">&lt;div class="grid grid-cols-3 gap-6"&gt;</p>
-<p class="p1">&lt;div class="bg-white rounded-2xl overflow-hidden shadow-sm border p-6"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between items-center mb-6"&gt;</p>
-<p class="p1">&lt;h3 class="text-sm font-black text-primary"&gt;ME-101&lt;/h3&gt;</p>
-<p class="p1">&lt;span class="px-3 py-1 bg-green-500 text-white text-[9px] font-black rounded-full uppercase"&gt;Normal&lt;/span&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="space-y-4"&gt;</p>
-<p class="p1">&lt;div class="flex justify-between text-[10px] font-bold text-slate-400"&gt;&lt;span&gt;TBN TREND&lt;/span&gt;&lt;span&gt;12.4 mg KOH/g&lt;/span&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;div class="h-20 bg-slate-50 rounded-xl flex items-end gap-1 p-2"&gt;</p>
-<p class="p1">&lt;div class="flex-1 bg-sky-200 h-1/2"&gt;&lt;/div&gt;&lt;div class="flex-1 bg-sky-300 h-3/4"&gt;&lt;/div&gt;&lt;div class="flex-1 bg-sky-500 h-full"&gt;&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;!-- Under Construction Placeholders --&gt;</p>
-<p class="p1">&lt;div class="hidden-content flex flex-col items-center justify-center h-full text-center p-20" id="denox"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-8xl text-primary/10 mb-6"&gt;engineering&lt;/span&gt;</p>
-<p class="p1">&lt;h2 class="text-3xl font-black text-primary"&gt;Denox Compressors&lt;/h2&gt;</p>
-<p class="p1">&lt;p class="text-slate-400 max-w-md mt-4 font-medium"&gt;This section is currently under maintenance. Real-time telemetry data integration is in progress.&lt;/p&gt;</p>
-<p class="p1">&lt;button class="mt-8 px-8 py-3 bg-primary text-white font-bold text-xs uppercase tracking-widest rounded shadow-lg"&gt;Return to Dashboard&lt;/button&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="hidden-content flex flex-col items-center justify-center h-full text-center p-20" id="control-air"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-8xl text-primary/10 mb-6"&gt;mode_fan&lt;/span&gt;</p>
-<p class="p1">&lt;h2 class="text-3xl font-black text-primary"&gt;Control Air Compressors&lt;/h2&gt;</p>
-<p class="p1">&lt;p class="text-slate-400 max-w-md mt-4 font-medium"&gt;Control system interface pending certification for this vessel series.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="hidden-content flex flex-col items-center justify-center h-full text-center p-20" id="fwg"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-8xl text-primary/10 mb-6"&gt;water_drop&lt;/span&gt;</p>
-<p class="p1">&lt;h2 class="text-3xl font-black text-primary"&gt;Fresh Water Generator (FWG)&lt;/h2&gt;</p>
-<p class="p1">&lt;p class="text-slate-400 max-w-md mt-4 font-medium"&gt;Sensor calibration required before system activation.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;div class="hidden-content flex flex-col items-center justify-center h-full text-center p-20" id="pumps"&gt;</p>
-<p class="p1">&lt;span class="material-symbols-outlined text-8xl text-primary/10 mb-6"&gt;ev_station&lt;/span&gt;</p>
-<p class="p1">&lt;h2 class="text-3xl font-black text-primary"&gt;Pumps Matrix&lt;/h2&gt;</p>
-<p class="p1">&lt;p class="text-slate-400 max-w-md mt-4 font-medium"&gt;Centralized pump control system under construction.&lt;/p&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/div&gt;</p>
-<p class="p1">&lt;/main&gt;</p>
-<p class="p1">&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener('DOMContentLoaded', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const navItems = document.querySelectorAll('.nav-item');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const sections = document.querySelectorAll('#content-container &gt; div');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const contentContainer = document.getElementById('content-container');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>navItems.forEach(item =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>item.addEventListener('click', (e) =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                </span>const targetSectionId = item.getAttribute('data-section');</p>
-<p class="p2"><span class="Apple-converted-space">                </span></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Update Sidebar Active State</p>
-<p class="p1"><span class="Apple-converted-space">                </span>navItems.forEach(i =&gt; i.classList.remove('active'));</p>
-<p class="p1"><span class="Apple-converted-space">                </span>item.classList.add('active');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">                </span>// Switch Content</p>
-<p class="p1"><span class="Apple-converted-space">                </span>sections.forEach(section =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>if (section.id === targetSectionId) {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>section.classList.remove('hidden-content');</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>// Scroll to top of section</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>contentContainer.scrollTop = 0;</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>} else {</p>
-<p class="p1"><span class="Apple-converted-space">                        </span>section.classList.add('hidden-content');</p>
-<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">                </span>});</p>
-<p class="p1"><span class="Apple-converted-space">            </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Initialize with Dashboard if needed (redundant since active by default in HTML)</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const dashboardBtn = document.querySelector('[data-section="dashboard"]');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (dashboardBtn) dashboardBtn.click();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1">&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;&lt;/html&gt;</p>
+<body class="bg-background-light font-sans antialiased text-navy-dark">
+<header class="bg-navy-dark text-white px-4 py-4 sticky top-0 z-50 flex items-center justify-between border-b border-white/10">
+<div class="flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg">
+<span class="material-symbols-outlined text-white text-xl">movie_edit</span>
+</div>
+<h1 class="font-bold text-lg tracking-tight">VitrinVideo <span class="text-primary">Stüdyo</span></h1>
+</div>
+<button class="size-10 flex items-center justify-center rounded-full bg-white/10">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</header>
+
+<main class="pb-40">
+
+  <section class="bg-navy-dark p-4 pb-10 rounded-b-[2.5rem] shadow-xl vv-preview-wrap">
+    <div class="max-w-[290px] mx-auto relative group">
+      <div class="absolute -inset-1 bg-gradient-to-r from-primary to-orange-400 rounded-[2.5rem] blur opacity-25 group-hover:opacity-40 transition duration-1000"></div>
+      <div id="phoneFrame" class="vv-phone relative bg-black rounded-[2.2rem] aspect-[9/16] overflow-hidden shadow-2xl">
+        <div id="previewMedia" class="w-full h-full opacity-90"></div>
+        <div class="absolute inset-0 flex flex-col justify-between p-6 bg-gradient-to-t from-black/85 via-black/10 to-black/40">
+          <div class="flex justify-between items-start">
+            <span id="previewBadge" class="bg-primary text-[10px] font-bold px-2 py-1 rounded text-white uppercase tracking-wider">%20 indirim</span>
+            <span id="platformMini" class="mini-pill text-[10px] font-bold px-2 py-1 rounded text-white uppercase tracking-wider">Story</span>
+          </div>
+          <div id="slideDots" class="flex gap-1.5 justify-center mt-2"></div>
+          <button class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30">
+            <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+          </button>
+          <div class="space-y-3">
+            <div class="space-y-1">
+              <h3 id="previewTitle" class="text-white font-bold text-lg leading-tight">Haftasonuna Özel %20 İndirim</h3>
+              <p id="previewSubtitle" class="text-white/70 text-xs">Tüm ana yemeklerde geçerli büyük fırsatı kaçırmayın!</p>
+            </div>
+            <div class="h-1.5 w-full bg-white/20 rounded-full overflow-hidden">
+              <div class="h-full bg-primary w-2/3"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-white/50 font-medium">
+              <span id="previewBusiness">Gurme Lezzet Durağı</span>
+              <span id="previewPhone">0532 000 00 00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="px-5 -mt-8 space-y-6 vv-desktop">
+
+    <section class="space-y-6">
+
+      <div id="sectorArea" class="vv-card p-5">
+        <h4 class="text-navy-dark/40 text-[10px] font-bold uppercase tracking-widest mb-4">1. MESLEK / SEKTÖR SEÇİMİ</h4>
+        <div id="sectorGrid" class="grid grid-cols-4 gap-4"></div>
+      </div>
+
+      <div id="presetArea" class="vv-card p-5 space-y-4">
+        <div class="flex items-center justify-between gap-3">
+          <h4 class="text-navy-dark/40 text-[10px] font-bold uppercase tracking-widest">HAZIR KAMPANYA ÖNERİLERİ</h4>
+          <span id="presetSectorLabel" class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded-full">Restoran</span>
+        </div>
+        <div id="presetGrid" class="grid grid-cols-2 gap-3"></div>
+      </div>
+
+
+      <div class="vv-card p-5 space-y-5">
+        <h4 class="text-navy-dark/40 text-[10px] font-bold uppercase tracking-widest">2. KAMPANYA DETAYLARI</h4>
+        <div class="space-y-4">
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-navy-dark/60 ml-1">İşletme Adı</label>
+            <input id="businessName" class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-navy-dark font-semibold outline-none" type="text" value="Gurme Lezzet Durağı"/>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-navy-dark/60 ml-1">Ana Başlık</label>
+            <input id="campaignTitle" class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-navy-dark font-semibold outline-none" type="text" value="Haftasonuna Özel %20 İndirim"/>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-xs font-bold text-navy-dark/60 ml-1">Açıklama / Teklif</label>
+            <textarea id="campaignSubtitle" class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-navy-dark font-medium outline-none" rows="2">Tüm ana yemeklerde geçerli büyük fırsatı kaçırmayın!</textarea>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-navy-dark/60 ml-1">Teklif / Fiyat</label>
+              <input id="campaignOffer" class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-navy-dark font-semibold outline-none" type="text" value="%20 indirim"/>
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-xs font-bold text-navy-dark/60 ml-1">WhatsApp</label>
+              <input id="campaignPhone" class="w-full px-4 py-3 bg-gray-50 border border-gray-100 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent text-navy-dark font-semibold outline-none" type="text" value="0532 000 00 00"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-2">
+          <div class="flex items-center justify-between">
+            <label class="text-xs font-bold text-navy-dark/60 ml-1">Story Şablonları</label>
+            <span id="mediaCountLabel" class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-1 rounded-full"></span>
+          </div>
+          
+          <div class="grid grid-cols-3 gap-2" id="storyTemplateStrip">
+            <button type="button" class="story-template active" data-template-kind="cover"><span>Kapak</span></button>
+            <button type="button" class="story-template" data-template-kind="detail"><span>Detay</span></button>
+            <button type="button" class="story-template" data-template-kind="price"><span>Fiyat</span></button>
+          </div>
+
+          <div id="mediaStrip" class="flex gap-3 overflow-x-auto pb-2 no-scrollbar"></div>
+          <label class="w-full h-14 rounded-2xl border-2 border-dashed border-gray-200 flex items-center justify-center gap-2 text-gray-400 bg-gray-50 transition-colors hover:border-primary hover:text-primary cursor-pointer">
+            <span class="material-symbols-outlined text-2xl">add_photo_alternate</span>
+            <span class="text-xs font-bold">Story şablonu ekle</span>
+            <input id="imageUpload" type="file" accept="image/*" multiple class="hidden"/>
+          </label>
+          <p class="text-[10px] text-gray-400 leading-relaxed">Şablon kartını seç, fotoğrafı değiştir, aynı tasarım diliyle paylaş.</p>
+        </div>
+      </div>
+
+      <div id="designArea" class="vv-card p-5 space-y-6">
+        <div class="space-y-4">
+          <h4 class="text-navy-dark/40 text-[10px] font-bold uppercase tracking-widest">3. TASARIM VE RENK PALETİ</h4>
+          <div id="themeGrid" class="grid grid-cols-2 gap-3"></div>
+        </div>
+
+        <div class="pt-4 border-t border-gray-50 space-y-4">
+          <h4 class="text-navy-dark/40 text-[10px] font-bold uppercase tracking-widest">4. PLATFORM VE FORMAT</h4>
+          <div id="platformGrid" class="flex overflow-x-auto gap-2 pb-1 no-scrollbar">
+            <button data-platform="reels" class="platform-btn active px-5 py-2.5 rounded-full bg-navy-dark text-white text-[11px] font-bold whitespace-nowrap flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">auto_awesome_motion</span> Instagram Reels
+            </button>
+            <button data-platform="story" class="platform-btn px-5 py-2.5 rounded-full bg-gray-100 text-gray-500 text-[11px] font-bold whitespace-nowrap flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">history</span> Story
+            </button>
+            <button data-platform="post" class="platform-btn px-5 py-2.5 rounded-full bg-gray-100 text-gray-500 text-[11px] font-bold whitespace-nowrap flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">crop_square</span> Kare Post
+            </button>
+            <button data-platform="whatsapp" class="platform-btn px-5 py-2.5 rounded-full bg-gray-100 text-gray-500 text-[11px] font-bold whitespace-nowrap flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">chat</span> WhatsApp
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+</main>
+
+<nav class="fixed bottom-0 left-0 right-0 p-4 z-[60] bg-gradient-to-t from-background-light via-background-light/95 to-transparent pb-6">
+  <div class="max-w-xl mx-auto bg-navy-dark text-white rounded-3xl p-2 shadow-2xl border border-white/10 flex items-center justify-between gap-2">
+    <button class="bottom-action active flex-1 py-3 rounded-2xl bg-white/10 flex flex-col items-center gap-1 text-[10px] font-bold" data-target="top">
+      <span class="material-symbols-outlined text-lg">home</span>Ana
+    </button>
+    <button class="bottom-action flex-1 py-3 rounded-2xl flex flex-col items-center gap-1 text-[10px] font-bold text-white/60" data-target="sectorArea">
+      <span class="material-symbols-outlined text-lg">storefront</span>Meslek
+    </button>
+    <button class="bottom-action flex-1 py-3 rounded-2xl flex flex-col items-center gap-1 text-[10px] font-bold text-white/60" data-target="designArea">
+      <span class="material-symbols-outlined text-lg">palette</span>Tasarım
+    </button>
+    <button class="bottom-action flex-1 py-3 rounded-2xl flex flex-col items-center gap-1 text-[10px] font-bold text-white/60" id="openShareSheet">
+      <span class="material-symbols-outlined text-lg">ios_share</span>Paylaş
+    </button>
+  </div>
+</nav>
+
+<div id="sheetBg" class="vv-overlay fixed inset-0 bg-black/50 z-[70]"></div>
+
+<section id="shareSheet" class="vv-sheet fixed left-0 right-0 bottom-0 z-[80]">
+  <div class="max-w-xl mx-auto bg-white rounded-t-[2rem] p-5 shadow-2xl">
+    <div class="w-12 h-1.5 bg-gray-200 rounded-full mx-auto mb-5"></div>
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-bold text-xl text-navy-dark">Paylaş</h3>
+      <button id="closeShareSheet" class="size-9 rounded-full bg-gray-100 flex items-center justify-center">
+        <span class="material-symbols-outlined">close</span>
+      </button>
+    </div>
+    <div class="grid gap-3">
+      <button id="downloadImageBtn" class="h-14 rounded-2xl bg-primary text-white font-bold flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">download</span> Görseli İndir
+      </button>
+      <button id="copyTextBtn" class="h-14 rounded-2xl bg-navy-dark text-white font-bold flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">content_copy</span> Metni Kopyala
+      </button>
+      <button id="nativeShareBtn" class="h-14 rounded-2xl bg-gray-100 text-navy-dark font-bold flex items-center justify-center gap-2">
+        <span class="material-symbols-outlined">ios_share</span> Paylaş
+      </button>
+    </div>
+
+    <div class="mt-4 rounded-2xl bg-orange-50 border border-orange-100 p-4">
+      <div class="flex items-center justify-between gap-3">
+        <div>
+          <b class="text-sm text-navy-dark">VitrinVideo Pro</b>
+          <p class="text-xs text-gray-500 mt-1">Watermark kaldır • sınırsız export • premium şablon</p>
+        </div>
+        <span class="text-primary font-bold text-sm whitespace-nowrap">₺299 / ay</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script id="vv-final-engine">
+(function(){
+  const sectors = {
+    restoran:{icon:'restaurant', name:'Restoran', business:'Gurme Lezzet Durağı', colors:['#FF6B00','#0A1128'], presets:[
+      ['restaurant_menu','Günün Menüsü','Öğle menüsünü story’de hızlı duyur.','Günün Menüsü Hazır','Çorba + ana yemek + içecek fırsatı bugün geçerli.','Menü ₺189'],
+      ['local_fire_department','Hafta Sonu','Rezervasyon ve akşam trafiği için.','Haftasonuna Özel %20 İndirim','Tüm ana yemeklerde geçerli büyük fırsatı kaçırmayın!','%20 indirim'],
+      ['delivery_dining','Paket Servis','WhatsApp siparişi öne çıkar.','Paket Servis Açık','Sıcak yemekleri kapına getiriyoruz.','Hemen sipariş ver'],
+      ['event_seat','Son Masa','Acil rezervasyon hissi verir.','Bu Akşama Son Masalar','Sınırlı kontenjan için hemen yaz.','Rezervasyon al'],
+      ['star','Şef Önerisi','Premium yemek tanıtımı.','Şefin Özel Tabağı','Bugüne özel hazırlanan seçili lezzet.','Özel menü'],
+      ['groups','Aile Menüsü','Kalabalık gruplara uygun.','Aile Menüsü Yayında','Paylaşımlı menü ile hesaplı lezzet.','4 kişilik fırsat']
+    ]},
+    kafe:{icon:'local_cafe', name:'Kafe', business:'Vitrin Cafe', colors:['#C084FC','#312E81'], presets:[
+      ['coffee','Kahve + Tatlı','En hızlı story kampanyası.','Kahve Molası Başladı','Kahve + tatlı ikilisinde günün fırsatı.','2’li menü ₺149'],
+      ['bakery_dining','Brunch','Hafta sonu trafiği için.','Brunch Keyfi Hazır','Serpme lezzetler ve sıcak kahve seni bekliyor.','Kişi başı ₺299'],
+      ['wb_sunny','Sabah Fırsatı','Erken saat kampanyası.','Sabah Kahvesi Fırsatı','Güne sıcak kahveyle başla.','09:00-11:00 özel'],
+      ['icecream','Tatlı Vitrini','Ürün vitrini için.','Bugünün Tatlısı Çıktı','Taze tatlılarımız vitrinde yerini aldı.','Tatlı + kahve'],
+      ['wifi','Çalışma Alanı','Freelancer/kampüs kitlesi.','Laptopunu Al Gel','Sessiz çalışma alanı ve güçlü kahve.','Gün boyu açık'],
+      ['celebration','Arkadaş Buluşması','Sosyal grup çağrısı.','Akşam Kahve Buluşması','Arkadaşlarınla tatlı bir mola ver.','Grup fırsatı']
+    ]},
+    berber:{icon:'content_cut', name:'Berber', business:'Barber House', colors:['#38BDF8','#082F49'], presets:[
+      ['content_cut','Saç + Sakal','Ana paket.','Saç + Sakal Paketi','Bugün randevu al, haftaya temiz başla.','Paket ₺450'],
+      ['schedule','Bugün Boş Saat','Randevu doldurma.','Bugün İçin Boş Saatler Var','Uygun saatleri kaçırmadan yaz.','Randevu al'],
+      ['bolt','Hafta İçi','Düşük yoğunluk günleri.','Hafta İçi Bakım Fırsatı','Yoğunluk olmadan bakımını yaptır.','%15 indirim'],
+      ['face','Damat Paketi','Premium paket.','Damat Bakım Paketi','Özel gün öncesi tam bakım.','Paket hazır'],
+      ['workspace_premium','Premium Kesim','Marka algısı.','Premium Kesim Deneyimi','Tarzını profesyonel dokunuşla yenile.','Detay al'],
+      ['group','Arkadaşını Getir','Viral teklif.','Arkadaşını Getir Fırsatı','Birlikte gel, avantajı yakala.','İkili fırsat']
+    ]},
+    guzellik:{icon:'spa', name:'Güzellik', business:'Luna Beauty', colors:['#F472B6','#500724'], presets:[
+      ['spa','Bakım Günü','Genel bakım.','Bakım Günü Fırsatı','Cilt bakımı ve manikürde bugüne özel avantaj.','%25 indirim'],
+      ['back_hand','Manikür Paketi','Hızlı randevu.','Manikür + Pedikür Paketi','Haftaya bakımlı başlamak isteyenlere.','Paket ₺799'],
+      ['auto_awesome','Yeni Müşteri','İlk randevu.','İlk Randevuya Özel','Yeni müşteriler için tanışma fırsatı.','%20 indirim'],
+      ['event_available','Son Randevu','Boş slot doldurma.','Bugün Son Randevular','Uygun saatleri kaçırmadan yaz.','Randevu al'],
+      ['diamond','Premium Bakım','Lüks algı.','Premium Bakım Paketi','Kendine özel bakım deneyimi.','Detay al'],
+      ['redeem','Arkadaş Paketi','İkili satış.','Arkadaşınla Gel','İkili bakım paketinde özel avantaj.','İkili fırsat']
+    ]},
+    magaza:{icon:'shopping_cart', name:'Mağaza', business:'Moda Vitrin', colors:['#8B5CF6','#2E1065'], presets:[
+      ['new_releases','Yeni Sezon','Yeni ürün duyurusu.','Yeni Sezon Vitrine Çıktı','Seçili ürünlerde sınırlı süreli kampanya.','Yeni sezon'],
+      ['sell','Son Stok','Acil satın alma hissi.','Son Stok Ürünler','Tükenmeden favorini ayır.','Son stok'],
+      ['local_offer','İndirim','Klasik kampanya.','Sezon İndirimi Başladı','Seçili ürünlerde özel fiyat.','%30 indirim'],
+      ['checkroom','Kombin','Vitrin/ürün önerisi.','Bugünün Kombini Hazır','Günlük şıklık için seçili parçalar.','Kombin fırsatı'],
+      ['shopping_bag','Yeni Ürün','Tek ürün tanıtımı.','Yeni Ürün Geldi','Vitrinin en yeni parçasını keşfet.','Detay al'],
+      ['card_giftcard','Hediye Önerisi','Hediye dönemi.','Hediye Arayanlara Özel','Sevdiklerin için şık alternatifler.','Hediye seç']
+    ]},
+    emlak:{icon:'home', name:'Emlak', business:'Vizyon Emlak', colors:['#10B981','#022C22'], presets:[
+      ['home','Yeni İlan','İlan duyurusu.','Yeni İlan Yayında','Merkezi konumda fırsat portföy.','Detay için yaz'],
+      ['vpn_key','Satılık Fırsat','Satılık portföy.','Satılık Fırsat Daire','Yatırım değeri yüksek portföy.','Konum iste'],
+      ['location_on','Kiralık','Kiralık ilan.','Yeni Kiralık Daire','Kullanışlı plan ve merkezi konum.','Randevu al'],
+      ['calendar_month','Gösterim','Randevu yönlendirme.','Randevulu Gösterim Açık','Evi yerinde görmek için saatini ayır.','Gösterim al'],
+      ['apartment','Haftanın Portföyü','Prestij vitrin.','Haftanın Öne Çıkan Portföyü','Kaçırılmayacak ilanı incele.','Detay al'],
+      ['trending_up','Yatırım','Yatırımcı dili.','Yatırımlık Fırsat','Bölgenin yükselen değerini kaçırma.','Bilgi al']
+    ]},
+    galeri:{icon:'directions_car', name:'Galeri', business:'Prestij Auto', colors:['#F59E0B','#451A03'], presets:[
+      ['directions_car','Yeni Araç','Yeni stok.','Yeni Araç Stokta','Temiz ve bakımlı araçlar için bize yaz.','Teklif al'],
+      ['speed','Test Sürüşü','Randevu.','Test Sürüşü Randevusu','Aracı yerinde gör, test sürüşü yap.','Randevu al'],
+      ['verified','Ekspertizli','Güven.','Ekspertizli Araç Fırsatı','Bakımlı ve kontrolleri hazır araç.','Detay al'],
+      ['local_offer','Fiyat Fırsatı','Acil satış.','Fiyat Fırsatı Başladı','Seçili araçlarda özel teklif.','Bugüne özel'],
+      ['swap_horiz','Takas','Takas müşterisi.','Takas Değerlendirme Açık','Aracını getir, teklifini al.','Takas sor'],
+      ['workspace_premium','Premium Stok','Lüks araç.','Premium Araç Vitrini','Özel segment araçları incele.','Bilgi al']
+    ]},
+    spor:{icon:'fitness_center', name:'Spor Salonu', business:'FitZone', colors:['#22C55E','#052E16'], presets:[
+      ['fitness_center','Üyelik','Ana kampanya.','Bugün Başla','Yeni üyeliklerde özel avantaj.','İlk ay %30'],
+      ['sports_gymnastics','Deneme Dersi','Lead toplama.','Ücretsiz Deneme Dersi','Antrenör eşliğinde ilk adımı at.','Kontenjan sınırlı'],
+      ['local_fire_department','Yaz Paketi','Sezonluk satış.','Yaz Paketi Hazır','Forma girmek isteyenlere özel program.','3 aylık paket'],
+      ['groups','Grup Dersi','Ders doldurma.','Grup Dersleri Başladı','Enerjik derslere yerini ayır.','Derse katıl'],
+      ['monitor_heart','PT Paketi','Premium satış.','Kişisel Antrenman Paketi','Hedefine özel planla ilerle.','PT sor'],
+      ['schedule','Sabah Sporu','Zaman bazlı.','Sabah Seansı Açık','Güne güçlü başlamak isteyenlere.','Sabah fırsatı']
+    ]},
+    otel:{icon:'hotel', name:'Otel', business:'Blue Hotel', colors:['#0EA5E9','#082F49'], presets:[
+      ['hotel','Hafta Sonu','Konaklama.','Hafta Sonu Kaçamağı','Konforlu konaklama için yerini ayır.','2 gece fırsatı'],
+      ['beach_access','Deniz Manzarası','Manzara satışı.','Deniz Manzaralı Oda','Tatil keyfini manzarayla yaşa.','Rezervasyon al'],
+      ['restaurant','Kahvaltı Dahil','Paket.','Kahvaltı Dahil Paket','Güne zengin kahvaltıyla başla.','Paket fiyat'],
+      ['event_available','Son Oda','Acil.','Son Odalar Kaldı','Tarih dolmadan rezervasyon yap.','Son oda'],
+      ['spa','Spa Paketi','Ek gelir.','Spa & Konaklama Paketi','Dinlenme deneyimini tamamla.','Detay al'],
+      ['family_restroom','Aile Paketi','Aile hedef.','Aile Tatil Paketi','Konforlu ve ekonomik aile konaklaması.','Aile fırsatı']
+    ]},
+    kurs:{icon:'school', name:'Kurs', business:'Akademi Plus', colors:['#6366F1','#1E1B4B'], presets:[
+      ['school','Yeni Dönem','Kayıt.','Yeni Dönem Başladı','Sınırlı kontenjan için kayıt bilgisi al.','Erken kayıt'],
+      ['quiz','Deneme Dersi','Lead.','Ücretsiz Deneme Dersi','Seviyeni gör, programını belirle.','Katılım al'],
+      ['schedule','Son Kontenjan','Acil.','Son Kontenjanlar','Yeni dönem başlamadan yerini ayır.','Son kayıt'],
+      ['language','Dil Kursu','Branş.','Dil Eğitim Programı','Konuşma odaklı eğitimle başla.','Bilgi al'],
+      ['child_care','Çocuk Kursu','Aile hedef.','Çocuklara Özel Program','Eğlenerek öğrenme zamanı.','Kayıt al'],
+      ['workspace_premium','Sertifika','Premium.','Sertifikalı Eğitim','Kariyerine yeni yetkinlik ekle.','Detay al']
+    ]},
+    elektronik:{icon:'devices', name:'Elektronik', business:'Tech Store', colors:['#F43F5E','#4C0519'], presets:[
+      ['devices','Yeni Ürün','Vitrin.','Yeni Ürün Geldi','En yeni teknoloji vitrinde.','İncele'],
+      ['sports_esports','Gaming','Niş.','Gaming Günleri','Kulaklık ve ekipmanlarda özel fırsat.','Son 3 gün'],
+      ['sell','İndirim','Satış.','Teknoloji İndirimi','Seçili ürünlerde avantajlı fiyat.','%20 indirim'],
+      ['inventory_2','Son Stok','Acil.','Son Stok Ürünler','Tükenmeden favorini ayır.','Son stok'],
+      ['build','Servis','Hizmet.','Teknik Servis Açık','Cihaz kontrol ve bakım için yaz.','Servis al'],
+      ['smartphone','Telefon','Kategori.','Telefon Fırsatları','Yeni modeller için teklif al.','Teklif iste']
+    ]},
+    etkinlik:{icon:'celebration', name:'Etkinlik', business:'Event Point', colors:['#EC4899','#831843'], presets:[
+      ['celebration','Bu Akşam','Anlık.','Bu Akşam Etkinlik Var','Müzik, eğlence ve sınırlı giriş fırsatı.','Bilet al'],
+      ['music_note','DJ Night','Gece.','DJ Night Başlıyor','Geceye ritim katmak için yerini al.','Giriş listesi'],
+      ['confirmation_number','Bilet','Satış.','Biletler Satışta','Erken al, avantajı yakala.','Bilet al'],
+      ['groups','Masa','Rezervasyon.','Masa Rezervasyonu Açık','Arkadaş grubunla geceni planla.','Masa ayır'],
+      ['local_bar','Happy Hour','Bar.','Happy Hour Başladı','Seçili içeceklerde özel saatler.','Saatleri sor'],
+      ['event','Haftalık Program','Takvim.','Bu Haftanın Programı','Etkinlik takvimini kaçırma.','Programı gör']
+    ]}
+  };
+
+  const themes = [
+    {id:'modern', name:'Modern & Bold', c1:'#FF6B00', c2:'#0A1128'},
+    {id:'gold', name:'Zarif Altın', c1:'#111827', c2:'#FACC15'},
+    {id:'fresh', name:'Dinamik Fresh', c1:'#2563EB', c2:'#22D3EE'},
+    {id:'pink', name:'Canlı Pembe', c1:'#E11D48', c2:'#FDA4AF'},
+    {id:'green', name:'Premium Yeşil', c1:'#059669', c2:'#022C22'},
+    {id:'violet', name:'Violet Pro', c1:'#7C3AED', c2:'#2E1065'}
+  ];
+
+  let currentSector = 'restoran';
+  let currentPreset = 1;
+  let currentPlatform = 'reels';
+  let currentColors = sectors.restoran.colors;
+  let uploadedImage = '';
+  let mediaFiles = [];
+  let activeMediaIndex = 0;
+  let activeTemplateKind = 'cover';
+
+  const el = id => document.getElementById(id);
+  const business = el('businessName');
+  const title = el('campaignTitle');
+  const subtitle = el('campaignSubtitle');
+  const offer = el('campaignOffer');
+  const phone = el('campaignPhone');
+  const previewMedia = el('previewMedia');
+  const previewTitle = el('previewTitle');
+  const previewSubtitle = el('previewSubtitle');
+  const previewBadge = el('previewBadge');
+  const previewBusiness = el('previewBusiness');
+  const previewPhone = el('previewPhone');
+  const platformMini = el('platformMini');
+  const phoneFrame = el('phoneFrame');
+
+  function renderSectors(){
+    const grid = el('sectorGrid');
+    grid.innerHTML = Object.entries(sectors).map(([key,s]) => `
+      <button data-sector="${key}" class="sector-btn ${key===currentSector?'active':''} flex flex-col items-center gap-2 group">
+        <div class="sector-icon size-14 rounded-2xl ${key===currentSector?'bg-primary/10 text-primary':'bg-gray-50 text-gray-400'} flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all">
+          <span class="material-symbols-outlined text-2xl">${s.icon}</span>
+        </div>
+        <span class="sector-label text-[11px] font-bold ${key===currentSector?'text-primary':'text-gray-500'}">${s.name}</span>
+      </button>
+    `).join('');
+    grid.querySelectorAll('.sector-btn').forEach(btn=>btn.addEventListener('click',()=>applySector(btn.dataset.sector)));
+  }
+
+  function renderPresets(){
+    const s = sectors[currentSector];
+    el('presetSectorLabel').textContent = s.name;
+    const grid = el('presetGrid');
+    grid.innerHTML = s.presets.map((p,i)=>`
+      <button class="preset-card ${i===currentPreset?'active':''}" data-preset="${i}">
+        <span class="preset-icon"><span class="material-symbols-outlined text-[20px]">${p[0]}</span></span>
+        <b>${p[1]}</b>
+        <small>${p[2]}</small>
+      </button>
+    `).join('');
+    grid.querySelectorAll('.preset-card').forEach(btn=>btn.addEventListener('click',()=>applyPreset(+btn.dataset.preset)));
+  }
+
+  function renderThemes(){
+    const grid = el('themeGrid');
+    grid.innerHTML = themes.map((t,i)=>`
+      <button data-theme="${t.id}" data-c1="${t.c1}" data-c2="${t.c2}" class="theme-btn ${i===0?'active':''} p-3 bg-gray-50 border-2 border-transparent rounded-xl flex items-center gap-3">
+        <div class="flex -space-x-1">
+          <div class="size-4 rounded-full" style="background:${t.c1}"></div>
+          <div class="size-4 rounded-full" style="background:${t.c2}"></div>
+        </div>
+        <span class="text-xs font-bold text-gray-600 uppercase">${t.name}</span>
+      </button>
+    `).join('');
+    grid.querySelectorAll('.theme-btn').forEach(btn=>btn.addEventListener('click',()=>{
+      grid.querySelectorAll('.theme-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      currentColors = [btn.dataset.c1, btn.dataset.c2];
+      updatePreview();
+    }));
+  }
+
+  function applySector(key){
+    currentSector = key;
+    currentPreset = 0;
+    currentColors = sectors[key].colors;
+    business.value = sectors[key].business;
+    renderSectors();
+    renderPresets();
+    applyPreset(0, false);
+  }
+
+  function applyPreset(index, rerender=true){
+    currentPreset = index;
+    const p = sectors[currentSector].presets[index];
+    title.value = p[3];
+    subtitle.value = p[4];
+    offer.value = p[5];
+    if(rerender) renderPresets();
+    updatePreview();
+  }
+
+
+  function ensureDefaultMedia(){
+    if(mediaFiles.length === 0){
+      mediaFiles = [{type:'gradient', src:'', label:'Kapak', kind:'cover'}];
+      activeMediaIndex = 0;
+    }
+  }
+
+  function renderMediaStrip(){
+    ensureDefaultMedia();
+    const strip = el('mediaStrip');
+    const count = el('mediaCountLabel');
+    if(count) count.textContent = `${mediaFiles.length}/5`;
+    if(!strip) return;
+    strip.innerHTML = mediaFiles.map((m,i)=>`
+      <button type="button" class="media-card ${i===activeMediaIndex?'active':''}" data-media-index="${i}" data-kind="${m.kind || 'cover'}">
+        <span class="media-bg" style="${m.src ? `background-image:url('${m.src}')` : `background:linear-gradient(135deg,${currentColors[0]},${currentColors[1]})`}"></span>
+        <span class="media-number">${i+1}</span>
+        <span class="media-kind">${m.kind === 'price' ? 'Fiyat' : m.kind === 'detail' ? 'Detay' : 'Kapak'}</span>
+        ${mediaFiles.length>1 ? `<span class="media-remove" data-remove-index="${i}">×</span>` : ''}
+      </button>
+    `).join('');
+
+    strip.querySelectorAll('[data-media-index]').forEach(btn=>{
+      btn.addEventListener('click', (ev)=>{
+        if(ev.target.closest('[data-remove-index]')) return;
+        activeMediaIndex = +btn.dataset.mediaIndex;
+        renderMediaStrip();
+        updatePreview();
+      });
+    });
+    strip.querySelectorAll('[data-remove-index]').forEach(btn=>{
+      btn.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
+        const idx = +btn.dataset.removeIndex;
+        mediaFiles.splice(idx,1);
+        if(activeMediaIndex >= mediaFiles.length) activeMediaIndex = mediaFiles.length-1;
+        renderMediaStrip();
+        updatePreview();
+      });
+    });
+  }
+
+  function renderSlideDots(){
+    ensureDefaultMedia();
+    const dots = el('slideDots');
+    if(!dots) return;
+    dots.innerHTML = mediaFiles.map((_,i)=>`<span class="slide-dot ${i===activeMediaIndex?'active':''}"></span>`).join('');
+  }
+
+  function updatePreview(){
+    previewTitle.textContent = title.value || 'Reklam Başlığı';
+    previewSubtitle.textContent = subtitle.value || 'Kısa açıklama';
+    previewBadge.textContent = offer.value || 'KAMPANYA';
+    previewBusiness.textContent = business.value || 'İşletme';
+    previewPhone.textContent = phone.value || '';
+    platformMini.textContent = currentPlatform === 'reels' ? 'Reels' : currentPlatform === 'story' ? 'Story' : currentPlatform === 'post' ? 'Post' : 'WhatsApp';
+
+    ensureDefaultMedia();
+    const activeMedia = mediaFiles[activeMediaIndex] || mediaFiles[0];
+    if(activeMedia && activeMedia.src){
+      previewMedia.style.background = '';
+      previewMedia.style.backgroundImage = `linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.18)), url("${activeMedia.src}")`;
+    }else{
+      previewMedia.style.backgroundImage = '';
+      previewMedia.style.background = `linear-gradient(135deg,${currentColors[0]},${currentColors[1]})`;
+    }
+    renderSlideDots();
+    document.documentElement.style.setProperty('--vv-primary', currentColors[0]);
+  }
+
+  function setPlatform(platform){
+    currentPlatform = platform;
+    document.querySelectorAll('.platform-btn').forEach(b=>b.classList.remove('active'));
+    const active = document.querySelector(`[data-platform="${platform}"]`);
+    if(active) active.classList.add('active');
+    document.body.classList.remove('format-story','format-reels','format-whatsapp','format-post');
+    document.body.classList.add('format-'+platform);
+    phoneFrame.style.borderColor = platform === 'whatsapp' ? '#128C7E' : '#1C2541';
+    updatePreview();
+  }
+
+  function shareText(){
+    return `${business.value}: ${title.value}. ${subtitle.value}. ${offer.value}. WhatsApp: ${phone.value}`;
+  }
+
+  function openSheet(){
+    el('shareSheet').classList.add('open');
+    el('sheetBg').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSheet(){
+    el('shareSheet').classList.remove('open');
+    el('sheetBg').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function round(ctx,x,y,w,h,r){
+    ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();
+  }
+  function wrap(ctx,text,x,y,maxWidth,lineH,maxLines){
+    const words=String(text||'').split(/\s+/); let line='', lines=[];
+    for(const w of words){
+      const test=line?line+' '+w:w;
+      if(ctx.measureText(test).width>maxWidth && line){ lines.push(line); line=w; } else line=test;
+    }
+    if(line) lines.push(line);
+    lines.slice(0,maxLines).forEach((l,i)=>ctx.fillText(l,x,y+i*lineH));
+  }
+
+  function downloadImage(){
+    const isPost = currentPlatform === 'post';
+    const c=document.createElement('canvas');
+    c.width=1080; c.height=isPost?1080:1920;
+    const ctx=c.getContext('2d');
+    const g=ctx.createLinearGradient(0,0,c.width,c.height);
+    g.addColorStop(0,currentColors[0]); g.addColorStop(.55,currentColors[1]); g.addColorStop(1,'#0A1128');
+    ctx.fillStyle=g; ctx.fillRect(0,0,c.width,c.height);
+    const activeMedia = mediaFiles[activeMediaIndex] || {};
+    if(activeMedia.src){
+      const img = new Image();
+      img.onload = function(){
+        const ratio = Math.max(c.width/img.width, c.height/img.height);
+        const nw = img.width*ratio, nh = img.height*ratio;
+        ctx.globalAlpha = .82;
+        ctx.drawImage(img,(c.width-nw)/2,(c.height-nh)/2,nw,nh);
+        ctx.globalAlpha = 1;
+        drawExportOverlay();
+      };
+      img.src = activeMedia.src;
+      return;
+    }
+    drawExportOverlay();
+
+    function drawExportOverlay(){
+    ctx.fillStyle='rgba(0,0,0,.25)'; ctx.fillRect(0,0,c.width,c.height);
+
+    ctx.fillStyle=currentColors[0];
+    round(ctx,70, isPost?90:150, 430, 86, 28); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.font='bold 38px Public Sans, Arial'; ctx.fillText(offer.value||'KAMPANYA',100,isPost?145:205);
+
+    ctx.fillStyle='#fff'; ctx.font=`bold ${isPost?58:84}px Public Sans, Arial`;
+    wrap(ctx,title.value||'Reklam Başlığı',70,isPost?430:820,930,isPost?70:96,3);
+
+    ctx.fillStyle='rgba(255,255,255,.82)'; ctx.font=`${isPost?32:42}px Public Sans, Arial`;
+    wrap(ctx,subtitle.value||'',70,isPost?650:1110,900,isPost?42:54,3);
+
+    ctx.fillStyle='#fff'; ctx.font=`bold ${isPost?34:44}px Public Sans, Arial`;
+    ctx.fillText(business.value||'İşletme',70,isPost?940:1640);
+    ctx.fillStyle='rgba(255,255,255,.76)'; ctx.font=`${isPost?24:32}px Public Sans, Arial`;
+    ctx.fillText('WhatsApp: '+(phone.value||''),70,isPost?990:1700);
+
+    c.toBlob(blob=>{
+      const a=document.createElement('a');
+      a.href=URL.createObjectURL(blob);
+      a.download=`vitrinvideo-${currentPlatform}-slide-${activeMediaIndex+1}.png`;
+      a.click();
+      setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    });
+    }
+  }
+
+  renderSectors();
+  renderPresets();
+  renderThemes();
+  renderMediaStrip();
+  updatePreview();
+
+  [business,title,subtitle,offer,phone].forEach(input=> input.addEventListener('input',updatePreview));
+  document.querySelectorAll('.platform-btn').forEach(btn=>btn.addEventListener('click',()=>setPlatform(btn.dataset.platform)));
+
+
+  document.querySelectorAll('.story-template').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.story-template').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTemplateKind = btn.dataset.templateKind || 'cover';
+      ensureDefaultMedia();
+      if(mediaFiles[activeMediaIndex]) mediaFiles[activeMediaIndex].kind = activeTemplateKind;
+      renderMediaStrip();
+      updatePreview();
+    });
+  });
+
+  el('imageUpload').addEventListener('change', e=>{
+    const files = Array.from(e.target.files || []).filter(f=>f.type.startsWith('image/')).slice(0, 5 - mediaFiles.filter(m=>m.src).length);
+    if(!files.length) return;
+    if(mediaFiles.length === 1 && !mediaFiles[0].src) mediaFiles = [];
+    let loaded = 0;
+    files.forEach(file=>{
+      const reader=new FileReader();
+      reader.onload=()=>{
+        if(mediaFiles.length < 5){
+          mediaFiles.push({type:'image', src:reader.result, label:file.name, kind:activeTemplateKind});
+          activeMediaIndex = mediaFiles.length - 1;
+        }
+        loaded++;
+        if(loaded === files.length){
+          renderMediaStrip();
+          updatePreview();
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+    e.target.value = '';
+  });
+
+  document.querySelectorAll('.bottom-action[data-target]').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.bottom-action').forEach(b=>b.classList.remove('active','bg-white/10'));
+    btn.classList.add('active','bg-white/10');
+    const t=btn.dataset.target;
+    if(t==='top') window.scrollTo({top:0,behavior:'smooth'});
+    else document.getElementById(t)?.scrollIntoView({behavior:'smooth',block:'center'});
+  }));
+
+  el('openShareSheet').addEventListener('click',openSheet);
+  el('closeShareSheet').addEventListener('click',closeSheet);
+  el('sheetBg').addEventListener('click',closeSheet);
+
+  el('copyTextBtn').addEventListener('click',async()=>{
+    try{ await navigator.clipboard.writeText(shareText()); alert('Metin kopyalandı'); }
+    catch(e){ alert(shareText()); }
+  });
+  el('nativeShareBtn').addEventListener('click',async()=>{
+    const text=shareText();
+    if(navigator.share){ try{ await navigator.share({title:'VitrinVideo',text}); }catch(e){} }
+    else{ try{ await navigator.clipboard.writeText(text); alert('Metin kopyalandı'); }catch(e){ alert(text); } }
+  });
+  el('downloadImageBtn').addEventListener('click',downloadImage);
+  setPlatform('reels');
+})();
+</script>
+
+
 </body>
 </html>
